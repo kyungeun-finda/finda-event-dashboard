@@ -157,6 +157,16 @@ body{ background:#e7e8ee; font-family:-apple-system,BlinkMacSystemFont,"Apple SD
 .bs h3{ font-size:19px; font-weight:800; margin-bottom:16px; }
 .bs .opt{ padding:14px 4px; font-size:16px; border-top:1px solid #f2f2f6; }
 .dim{ position:absolute; inset:0; background:rgba(0,0,0,.35); }
+.popmodal{ position:absolute; left:50%; top:44%; transform:translate(-50%,-50%); width:300px; background:#fff; border-radius:20px; padding:26px 22px 18px; text-align:center; box-shadow:0 12px 40px rgba(0,0,0,.28); }
+.popmodal h3{ font-size:18px; font-weight:800; line-height:1.45; margin-bottom:10px; }
+.popmodal p{ font-size:13px; color:#8a8a99; line-height:1.55; margin-bottom:20px; }
+.popmodal .btns{ display:flex; gap:10px; }
+.popmodal .pbtn{ flex:1; padding:14px 0; border-radius:12px; font-size:15px; font-weight:700; cursor:pointer; }
+.popmodal .pbtn.ghost{ border:1px solid #cdc7f5; color:var(--finda); }
+.popmodal .pbtn.fill{ background:var(--finda); color:#fff; }
+.wheel{ display:flex; justify-content:space-around; text-align:center; margin:6px 0 18px; }
+.wheel .col{ flex:1; font-size:15px; color:#c8c8d2; line-height:2.3; }
+.wheel .col .sel{ color:#1c1c28; font-size:21px; font-weight:800; }
 .kbd{ background:#d6d9de; padding:10px; display:grid; grid-template-columns:repeat(3,1fr); gap:7px; }
 .kbd b{ background:#fff; border-radius:6px; text-align:center; padding:11px 0; font-size:19px; font-weight:600; }
 .subttl{ font-size:13px; color:#8a8a99; padding:0 22px 4px; }
@@ -217,6 +227,21 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
         <option value="la7">7 · 직업 선택</option>
         <option value="la8">8 · 직장명 입력</option>
         <option value="la9">9 · 소득 정보 입력</option>
+      </optgroup>
+      <optgroup label="전세자금대출(JA)">
+        <option value="ja_intro">1 · 전세 인트로</option>
+        <option value="ja_purpose">2 · 대출 목적 선택</option>
+        <option value="ja_date">· 날짜 피커(시작/종료/잔금)</option>
+        <option value="ja_contract">3 · 계약정보 입력</option>
+        <option value="ja_pop1">팝업 · 계약기간 안내</option>
+        <option value="ja_pop2">팝업 · 부동산 중개소</option>
+        <option value="ja_house">4 · 보유 주택 수</option>
+        <option value="ja_terms">5 · 약관 동의</option>
+        <option value="ja_pop3">팝업 · 곧 결과</option>
+        <option value="ja_loading">6 · 가심사 로딩</option>
+        <option value="ja_reject">결과 · 부결</option>
+        <option value="ja_result">결과 · 대출가능 리스트</option>
+        <option value="ja_detail">결과 · 상품 상세</option>
       </optgroup>
       <optgroup label="신용관리(CI)">
         <option value="ci_pop">신용점수 유도 팝업</option>
@@ -292,7 +317,7 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
       </div>
       <div class="h3">노경은님을 위해 준비했어요</div>
       <div class="duo" id="homeloans">
-        <div class="c hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="맞춤 추천 — 대출 받기 (category=all) [⚠️추정]" data-g="14.3만"><div class="ic">💰</div><div class="s">이자지원 진행 중</div><div class="b">대출 받기</div></div>
+        <div id="home-loan-get" class="c hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="맞춤 추천 — 대출 받기 (category=all) → 비교대출 한도조회(LA) 진입. ✅이 화면으로 가는 것 확인됨." data-g="14.3만"><div class="ic">💰</div><div class="s">이자지원 진행 중</div><div class="b">대출 받기</div></div>
         <div class="c hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="맞춤 추천 — 대출 갈아타기 (category=refinance) [✅확인]" data-g="14.3만"><div class="ic">🔄</div><div class="s">더 낮은금리·높은한도</div><div class="b">대출 갈아타기</div></div>
       </div>
       <div class="quick hot t-view" data-ev="MY_home_new_view" data-type="t-view" data-desc="퀵메뉴 영역 노출" data-g="구버전 노출은 죽음(18)">
@@ -301,7 +326,7 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
           <div class="qi hot t-click" data-ev="MY_home_click_PC" data-type="t-click" data-desc="퀵메뉴 — 핀다카드 (MY_home_new_click category=PC · 레거시 MY_home_click_PC 병존) [⚠️확인]" data-g="13"><span class="e">💳</span>핀다카드</div>
           <div class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 사업자대출 (category=privatebusiness)" data-g="14.3만"><span class="e">🏢</span>사업자대출</div>
           <div class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 주택담보대출 (category=mortgage)" data-g="14.3만"><span class="e">🏠</span>주택담보대출</div>
-          <div class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 전세대출 (category=jeonse)" data-g="14.3만"><span class="e">🏠</span>전세대출</div>
+          <div id="home-jeonse" class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 전세대출 (category=jeonse) → 전세자금대출(JA) 한도조회 진입. ✅확인." data-g="14.3만"><span class="e">🏠</span>전세대출</div>
           <div class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 우수대부 (category=LENDER)" data-g="14.3만"><span class="e">💰</span>우수대부</div>
           <div class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 신용카드 찾기 (category=CC)" data-g="14.3만"><span class="e">💳</span>신용카드 찾기</div>
           <div class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 차 구매대출 (category=autoloan)" data-g="14.3만"><span class="e">🚗</span>차 구매대출</div>
@@ -666,6 +691,205 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
       </div>
     </div>
 
+    <!-- ============ JA1 전세 인트로 ============ -->
+    <div class="screenpage" data-id="ja_intro">
+      <div class="statusbar"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="JA_intro_view" data-type="t-view" data-desc="전세자금대출 인트로 진입 시 자동 발생(페이지뷰). params {point:A|B}. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>JA_intro_view</b> · {point:A|B}</div>
+      <div class="ttl" style="padding-top:4px">나에게 딱 맞는 조건으로<br>전월세자금대출 찾기</div>
+      <div style="text-align:center;font-size:80px;margin:18px 0">🏠</div>
+      <div class="h3" style="font-size:16px">어떤 목적이든 찾아드려요</div>
+      <div style="padding:0 18px">
+        <div class="info-ln" style="display:flex;align-items:center;gap:10px;padding:8px 4px"><span style="font-size:20px">🆕</span> 전월세자금대출</div>
+        <div class="info-ln" style="display:flex;align-items:center;gap:10px;padding:8px 4px"><span style="font-size:20px">🔄</span> 전월세자금대출 갱신</div>
+        <div class="info-ln" style="display:flex;align-items:center;gap:10px;padding:8px 4px"><span style="font-size:20px">💸</span> 더 좋은 조건으로 갈아타기</div>
+      </div>
+      <div class="h3" style="font-size:16px;margin-top:18px">은행에 가지 않고도<br>3분만에 알아볼 수 있어요</div>
+      <div style="display:flex;gap:18px;padding:4px 22px 14px;font-size:14px;color:#555"><span>🏦 IBK기업은행</span><span>🏦 전북은행</span></div>
+      <div style="font-size:11px;color:#9a9aa8;padding:10px 22px;line-height:1.6">· (주)핀다는 금융관계법령에 따라 다수의 금융회사와 대출상품 모집에 관한 위탁계약을 체결한 금융상품판매대리·중개업자입니다.<br>· 법령상 제한 이자율은 연 최대 20%입니다. · 핀다심의필-202501-01-14 (유효기간: 2026.01.13.까지)</div>
+      <div class="cta-btn hot t-click" data-ev="JA_intro_clickCTA" data-type="t-click" data-desc="'전세자금대출 비교하기' CTA 클릭 → 한도조회 시작. ✅이벤트로그 확정." data-g="—">전세자금대출 비교하기</div>
+    </div>
+
+    <!-- ============ JA2 목적 선택 ============ -->
+    <div class="screenpage" data-id="ja_purpose">
+      <div class="statusbar"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="JA_purpose_view" data-type="t-view" data-desc="전세 목적 선택 페이지 뷰. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>JA_purpose_view</b></div>
+      <div class="ttl">대출 목적을 선택해 주세요</div>
+      <div class="listrow hot t-click" data-ev="JA_purpose_clickCTA" data-type="t-click" data-desc="목적 선택 (전·월세 신규 계약). params {purpose:&quot;new&quot;}. ✅이벤트로그 확정." data-g="—"><span>🆕 전·월세 신규 계약<br><span class="sm">계약서를 새로 작성하는 경우</span></span><span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="JA_purpose_clickCTA" data-type="t-click" data-desc="목적 선택 (기존 대출 대환). params {purpose:&quot;refinance&quot;}. ✅이벤트로그 확정." data-g="—"><span>🔄 기존 대출 대환<br><span class="sm">약정 3개월 이후 및 계약 만료 6개월 전</span></span><span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="JA_purpose_clickCTA" data-type="t-click" data-desc="목적 선택 (전·월세 계약 갱신). params {purpose:&quot;renewal&quot;}. ✅이벤트로그 확정." data-g="—"><span>💸 전·월세 계약 갱신<br><span class="sm">계약 만료 2개월 전 ~ 15일 전</span></span><span style="background:#efe9ff;color:#6b4bd6;border-radius:6px;padding:3px 8px;font-size:11px;font-weight:700">증액가능</span></div>
+    </div>
+
+    <!-- ============ JA 날짜 피커 (계약시작일/종료일/잔금일) ============ -->
+    <div class="screenpage" data-id="ja_date">
+      <div class="statusbar" style="color:#fff"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="dim hot t-click" data-ev="(피커 닫기)" data-type="t-click" data-desc="딤 닫기 → 계약정보 입력으로" data-g="—" style="background:rgba(0,0,0,.45)"></div>
+      <div class="bs">
+        <div class="grab"></div>
+        <h3 style="font-size:18px;font-weight:800;margin-bottom:6px">계약 시작일 선택 <span style="font-size:12px;color:#9a9aa8;font-weight:600">· 종료일/잔금일 동일 UI</span></h3>
+        <div class="wheel">
+          <div class="col">2021년<br>2022년<br><span class="sel">2023년</span><br>2024년<br>2025년</div>
+          <div class="col">8월<br>9월<br><span class="sel">10월</span><br>11월<br>12월</div>
+          <div class="col">18일<br>19일<br><span class="sel">20일</span><br>2일<br>22일</div>
+        </div>
+        <div style="font-size:11px;color:#9a9aa8;margin-bottom:10px">※ 날짜 피커는 개별 이벤트 없음 — JA_contractinfo_view 화면의 입력 요소</div>
+        <div class="cta-btn hot t-click" data-ev="확인필요" data-type="t-click" data-desc="날짜 피커 '완료' — 개별 이벤트 미확인(계약정보 입력의 일부). ⚠️확인필요." data-g="—" style="position:static;margin:0">완료</div>
+      </div>
+    </div>
+
+    <!-- ============ JA 계약정보 입력 ============ -->
+    <div class="screenpage" data-id="ja_contract">
+      <div class="statusbar"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="JA_contractinfo_view" data-type="t-view" data-desc="전세 계약정보 입력 페이지 뷰. params {service:LA|RA}(LA=신규조회/RA=대환조회). ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>JA_contractinfo_view</b> · {service:LA|RA}</div>
+      <div class="ttl">전·월세 계약 정보를<br>입력해주세요</div>
+      <div class="fieldbox hot t-click" data-ev="(날짜 입력)" data-type="t-click" data-desc="계약 시작일 선택 → 날짜 피커" data-g="—"><div class="k" style="color:#8a8a99">계약 시작일</div><div class="val">2025년 01월 01일 <span style="float:right;color:#ccc">⌄</span></div></div>
+      <div class="fieldbox hot t-click" data-ev="(날짜 입력)" data-type="t-click" data-desc="계약 종료일 선택 → 날짜 피커" data-g="—"><div class="k" style="color:#8a8a99">계약 종료일</div><div class="val">2025년 01월 01일 <span style="float:right;color:#ccc">⌄</span></div></div>
+      <div class="fieldbox hot t-click" data-ev="(날짜 입력)" data-type="t-click" data-desc="잔금일 선택 → 날짜 피커" data-g="—"><div class="k" style="color:#8a8a99">잔금일</div><div class="val">2025년 01월 01일 <span style="float:right;color:#ccc">⌄</span></div></div>
+      <div class="fieldbox hot t-click" data-ev="(보증금 입력)" data-type="t-click" data-desc="전세 보증금 입력" data-g="—"><div class="k">전세 보증금</div><div class="val">10,000 <span style="float:right">만 원</span></div></div>
+      <div class="hint">1억원</div>
+      <div class="cta-btn hot t-click" data-ev="JA_contractinfo_clickCTA" data-type="t-click" data-desc="'다음' — 전세 계약정보 입력 완료. params {service:LA|RA, amount:보증금 입력 금액}. ✅이벤트로그 확정." data-g="—">다음</div>
+    </div>
+
+    <!-- ============ JA 팝업: 대출기간≠임대차 ============ -->
+    <div class="screenpage" data-id="ja_pop1">
+      <div class="statusbar" style="color:#fff"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="dim" style="background:rgba(0,0,0,.45)"></div>
+      <div class="popmodal">
+        <h3>전세대출 기간과<br>임대차 계약기간이 다른가요?</h3>
+        <p>전세대출 실행일과 잔금일(임차 시작일)이 다른 경우, 대출이 불가할 수 있어요.</p>
+        <div class="btns">
+          <span class="pbtn ghost hot t-click" data-ev="확인필요" data-type="t-click" data-desc="'닫기' — 계약기간 안내 팝업. JA 전용 이벤트 미확인. ⚠️확인필요." data-g="—">닫기</span>
+          <span class="pbtn fill hot t-click" data-ev="확인필요" data-type="t-click" data-desc="'확인' — 계약기간 안내 팝업. JA 전용 이벤트 미확인. ⚠️확인필요." data-g="—">확인</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ JA 팝업: 부동산 중개소 ============ -->
+    <div class="screenpage" data-id="ja_pop2">
+      <div class="statusbar" style="color:#fff"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="dim" style="background:rgba(0,0,0,.45)"></div>
+      <div class="popmodal">
+        <h3>부동산 중개소를 통한<br>계약인가요?</h3>
+        <p>부동산 중개소를 통하지 않은 계약일 경우, 대출이 어려울 수 있어요.</p>
+        <div class="btns">
+          <span class="pbtn ghost hot t-click" data-ev="확인필요" data-type="t-click" data-desc="'아니오' — 중개소 여부 팝업. JA 전용 이벤트 미확인. ⚠️확인필요." data-g="—">아니오</span>
+          <span class="pbtn fill hot t-click" data-ev="확인필요" data-type="t-click" data-desc="'네' — 중개소 여부 팝업. JA 전용 이벤트 미확인. ⚠️확인필요." data-g="—">네</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ JA 보유 주택 수 ============ -->
+    <div class="screenpage" data-id="ja_house">
+      <div class="statusbar"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="JA_housepossession_view" data-type="t-view" data-desc="보유 주택 정보 화면 랜딩 시. params {service:LA|RA}. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>JA_housepossession_view</b></div>
+      <div class="ttl">보유중인 총 주택 수를<br>선택해 주세요</div>
+      <div class="subttl">같이 살고 있는 가족이 가지고 있는 주택의 수를 모두 포함해서 선택해 주세요.</div>
+      <div class="listrow hot t-click" data-ev="JA_housepossession_clickCTA" data-type="t-click" data-desc="보유 주택 수 선택 (0채). params {service, count:&quot;0&quot;}. ✅이벤트로그 확정." data-g="—">0채<span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="JA_housepossession_clickCTA" data-type="t-click" data-desc="보유 주택 수 선택 (1채). params {service, count:&quot;1&quot;}. ✅이벤트로그 확정." data-g="—">1채<span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="JA_housepossession_clickCTA" data-type="t-click" data-desc="보유 주택 수 선택 (2채 이상). params {service, count:&quot;2+&quot;}. ✅이벤트로그 확정." data-g="—">2채 이상<span style="color:#ccc">›</span></div>
+    </div>
+
+    <!-- ============ JA 약관 동의 ============ -->
+    <div class="screenpage" data-id="ja_terms">
+      <div class="statusbar" style="color:#fff"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="dim" style="background:rgba(0,0,0,.45)"></div>
+      <div class="bs">
+        <div class="grab"></div>
+        <div class="pvbar hot t-view" data-ev="확인필요" data-type="t-view" data-desc="약관·개인정보 동의 바텀시트 노출 — JA 전용 약관 이벤트 미확인(후보: LA_terms_viewbs {service:RA}). ⚠️확인필요." data-g="—" style="margin:0 0 12px;background:#fff4e6;border-color:#ffd9a8;color:#b25a00">👁 약관 바텀시트 노출(추정) · <b>확인필요</b></div>
+        <h3 style="font-size:19px;font-weight:800;margin-bottom:16px">서비스 약관 및 개인정보동의</h3>
+        <div style="background:#f4f4f8;border-radius:12px;padding:15px;display:flex;align-items:center;gap:10px;font-weight:800" class="hot t-click" data-ev="확인필요" data-type="t-click" data-desc="약관 전체 동의 — ⚠️확인필요." data-g="—"><span class="chk">✓</span>약관 전체 동의</div>
+        <div class="opt">✓ 핀다 필수 항목 모두 동의 &nbsp;⌄</div>
+        <div class="opt">✓ 금융기관 필수 항목 모두 동의 &nbsp;⌄</div>
+        <div class="opt">✓ 본인인증 필수 항목 모두 동의 &nbsp;⌄</div>
+        <div class="opt" style="color:#9a9aa8">✓ 마케팅 목적 수집·이용 동의 (선택) &nbsp;⌄</div>
+        <div class="opt" style="color:#9a9aa8">✓ 단체 신용생명보험 가입 안내 동의 (선택) &nbsp;⌄</div>
+        <div class="cta-btn hot t-click" data-ev="확인필요" data-type="t-click" data-desc="'확인' — 약관 동의 완료. JA 전용 약관 CTA 이벤트 미확인. ⚠️확인필요." data-g="—" style="margin:16px 0 0">확인</div>
+      </div>
+    </div>
+
+    <!-- ============ JA 팝업: 곧 결과 ============ -->
+    <div class="screenpage" data-id="ja_pop3">
+      <div class="statusbar" style="color:#fff"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="dim" style="background:rgba(0,0,0,.45)"></div>
+      <div class="popmodal">
+        <h3>곧 결과를 확인하실 수 있어요</h3>
+        <p>지금 나가면 처음부터 다시 시작해야 해요.</p>
+        <div class="btns">
+          <span class="pbtn ghost hot t-click" data-ev="확인필요" data-type="t-click" data-desc="'나가기' — 이탈 방지 팝업. JA 전용 이벤트 미확인. ⚠️확인필요." data-g="—">나가기</span>
+          <span class="pbtn fill hot t-click" data-ev="확인필요" data-type="t-click" data-desc="'계속하기' — 이탈 방지 팝업. JA 전용 이벤트 미확인. ⚠️확인필요." data-g="—">계속하기</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ JA 가심사 로딩 ============ -->
+    <div class="screenpage" data-id="ja_loading">
+      <div class="statusbar"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기 → 이탈 방지 팝업" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="JA_prejudgement_view" data-type="t-view" data-desc="전세대출 가심사 로딩 페이지 뷰. params {service:LA|RA}. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>JA_prejudgement_view</b></div>
+      <div class="ttl">금융사에서<br>대출조건을 찾고있어요</div>
+      <div class="subttl">2% 진행중...</div>
+      <div style="text-align:center;font-size:70px;margin:60px 0">🟠</div>
+      <div style="text-align:center;font-size:12px;color:#9a9aa8">(클릭하면 결과 화면으로 이동)</div>
+    </div>
+
+    <!-- ============ JA 부결 ============ -->
+    <div class="screenpage" data-id="ja_reject">
+      <div class="statusbar"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="JA_loan_reject_view" data-type="t-view" data-desc="부결 화면 랜딩 시. params {point:A|B}. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>JA_loan_reject_view</b> · {point:A|B}</div>
+      <div class="ttl">조건에 맞는 대출 상품을<br>찾지 못했어요</div>
+      <div class="subttl">아래 같은 이유로 대출이 어려울 수 있어요.</div>
+      <div class="info-ln">▪️ 최근 2주일 이내 대출을 받았어요</div>
+      <div class="info-ln">▪️ 신용점수가 낮아요</div>
+      <div class="info-ln">▪️ 증명가능한 소득이 부족해요</div>
+      <div class="info-ln">▪️ 과거 연체 이력이 많아요</div>
+      <div class="cta-btn hot t-click" data-ev="JA_loan_reject_clickCTA" data-type="t-click" data-desc="'내 신용대출 조건 확인하기' CTA. ✅이벤트로그 확정. (관련: '조건 바꿔서 알아보기'=JA_loan_reject_clickreapplication)" data-g="—">내 신용대출 조건 확인하기</div>
+    </div>
+
+    <!-- ============ JA 결과 리스트 ============ -->
+    <div class="screenpage" data-id="ja_result">
+      <div class="statusbar"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="back hot t-click" data-ev="(닫기)" data-type="t-click" data-desc="닫기(X)" data-g="—">✕</div>
+      <div class="pvbar hot t-view" data-ev="JA_loanlist_view" data-type="t-view" data-desc="전세 한도조회 결과 화면 랜딩 시. params {product_id(승인 상품 id), point:A|B}. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>JA_loanlist_view</b></div>
+      <div class="ttl" style="padding-top:4px">내 예상 한도는 <span style="color:var(--finda)">2억원</span><br>최저금리는 <span style="color:var(--finda)">4.35%</span> 이에요</div>
+      <div style="font-size:12px;color:#9a9aa8;padding:0 22px 10px">유효시간 24:00:00</div>
+      <div class="card" style="margin:0 14px 14px">
+        <div style="font-size:12px;color:#9a9aa8">계약물건</div>
+        <div style="font-size:15px;font-weight:700;margin:4px 0">잠실주공(5단지) 110동 101호 <span style="color:var(--finda)">4억원</span></div>
+        <span class="hot t-click" data-ev="JA_loanlist_clickchangemortgage" data-type="t-click" data-desc="'물건지 변경' 클릭(담보 변경). ✅이벤트로그 확정." data-g="—" style="display:inline-block;border:1px solid #ddd;border-radius:8px;padding:6px 12px;font-size:13px;margin-top:4px">물건지 변경</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:6px 22px"><span class="h3" style="margin:0">대출가능 2건</span><span style="font-size:13px;color:#9a9aa8">↕ 금리낮은 순</span></div>
+      <div class="listrow hot t-click" data-ev="JA_loanlist_clickproduct" data-type="t-click" data-desc="대출 상품 배너 클릭. params {lowest_rate:최저금리 여부, highest_limit:최대한도 여부}. ✅이벤트로그 확정." data-g="—"><span>🏦 금융사명<br><span class="sm">상품명 · 1.23% · 8천만원</span></span><span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="JA_loanlist_clickproduct" data-type="t-click" data-desc="대출 상품 배너 클릭. params {lowest_rate, highest_limit}. ✅이벤트로그 확정." data-g="—"><span>🏦 금융사명<br><span class="sm">상품명 · 1.23% · 8천만원</span></span><span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="JA_loanlist_clickreapplication" data-type="t-click" data-desc="'조건 바꿔서 재조회해보기' 클릭. ✅이벤트로그 확정." data-g="—"><span>🔄 조건 바꿔서 재조회해보기</span><span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="확인필요" data-type="t-click" data-desc="'미승인 내역 확인하기' — JA 전용 이벤트 미확인. ⚠️확인필요." data-g="—"><span>⋯ 미승인 내역 확인하기</span><span style="color:#ccc">›</span></div>
+    </div>
+
+    <!-- ============ JA 상품 상세 ============ -->
+    <div class="screenpage" data-id="ja_detail">
+      <div class="statusbar"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="JA_loandetail_view" data-type="t-view" data-desc="대출 상세 페이지 랜딩 시. params {product(product_id), amount(loan_amount), rate(loan_rate)}. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>JA_loandetail_view</b></div>
+      <div class="ttl" style="font-size:20px">상품명 최대 두줄<br><span style="color:var(--finda)">연 16.12%</span> · 1,700만원</div>
+      <div class="card" style="margin:0 14px 12px">
+        <div style="font-size:13px;font-weight:700;margin-bottom:8px">우대금리 -0.2% 적용중</div>
+        <div class="opt hot t-click" data-ev="JA_loandetail_clickbutton" data-type="t-click" data-desc="부가기능 — 우대금리. params {type:&quot;preferedinterest&quot;}. ✅이벤트로그 확정." data-g="—" style="font-size:13px">비거치형 선택 시 -0.1% ⌄</div>
+        <div class="opt" style="font-size:13px">주택 구입자금 목적 시 -0.1%</div>
+        <div class="opt" style="font-size:13px">모바일 약정 시 -0.1%</div>
+      </div>
+      <div class="fieldbox hot t-click" data-ev="JA_loandetail_clickbutton" data-type="t-click" data-desc="부가기능 — 예상 이자(계산보기). params {type:&quot;monthlyrepay&quot;}. ✅이벤트로그 확정." data-g="—"><div class="k" style="color:#8a8a99">예상 총 이자 15만원</div><div class="val" style="font-size:14px">대출금 2억 5,000만원 · 2개월 · 만기일시상환 시 <span style="float:right;color:var(--finda)">계산보기 ›</span></div></div>
+      <div class="h3" style="font-size:16px">이 상품의 특징이에요</div>
+      <div style="padding:0 18px;font-size:14px;color:#444;line-height:2">▪️ 전월세자금대출 · 전월세자금대출 갱신 · 더 좋은 조건으로 갈아타기</div>
+      <div class="h3" style="font-size:16px">이 상품의 최대 한도는 이렇게 결정돼요</div>
+      <div style="padding:0 22px;font-size:13px;color:#666;line-height:1.8">· 보증금의 80% / 최대 5억<br>· 한도 슬라이드 + 그래프 영역(상세)</div>
+      <div class="h3" style="font-size:16px">대출 상품 안내</div>
+      <div style="padding:0 22px 12px;font-size:12px;color:#888;line-height:1.7">· 한도: 최소 5백만원 ~ 최대 1억<br>· 대출대상 / 대출금리 / 이자부과시기 / 대출상품유형 / 금리인하 요구권 안내 / 청약철회권 안내 / 위탁계약체결 안내 / 자료열람요구권 안내 / 유의사항 (상세 약관 텍스트)</div>
+      <div class="cta-btn hot t-click" data-ev="JA_loandetail_clickCTA" data-type="t-click" data-desc="'금융사에서 신청 이어가기' — 대출 신청하기. params {product_id, point:A|B}. ✅이벤트로그 확정." data-g="—">금융사에서 신청 이어가기</div>
+    </div>
+
   </div></div></div>
 </div>
 
@@ -710,10 +934,23 @@ document.getElementById("navsel").addEventListener("change",e=>goScreen(e.target
 // ---- 프로토타입 플로우 전환 ----
 const FLOW={
   entry:[["#entry-close","home"],["#entry-hide","home"],["#entry-cta","home"],["#entry-loan","home"],["#entry-nudge-x","home"]],
-  home:[["#homeloans .c","la1"],[".qi","la1"],["#home-credit","ci_pop"],["#gnb-more","more"]],
+  home:[["#home-loan-get","la1"],["#home-credit","ci_pop"],["#gnb-more","more"],["#home-jeonse","ja_intro"]],
   ci_pop:[["#cipop-cta","ci"],["#cipop-dim","ci"]],
-  ci:[["#ci-labanner","la1"]],
+  ci:[],
   more:[["#more-credit","ci"],["#more-gnb-home","home"]],
+  ja_intro:[[".cta-btn","ja_purpose"]],
+  ja_purpose:[[".listrow","ja_contract"]],
+  ja_contract:[['[data-ev="(날짜 입력)"]',"ja_date"],[".cta-btn","ja_pop1"]],
+  ja_date:[[".cta-btn","ja_contract"],[".dim","ja_contract"]],
+  ja_pop1:[[".pbtn.fill","ja_pop2"],[".pbtn.ghost","ja_contract"]],
+  ja_pop2:[[".pbtn.fill","ja_house"],[".pbtn.ghost","ja_contract"]],
+  ja_house:[[".listrow","ja_terms"]],
+  ja_terms:[[".cta-btn","ja_loading"]],
+  ja_pop3:[[".pbtn.fill","ja_loading"],[".pbtn.ghost","home"]],
+  ja_loading:[[".pvbar","ja_result"],[".ttl","ja_result"],[".subttl","ja_result"]],
+  ja_reject:[],
+  ja_result:[[".listrow","ja_detail"]],
+  ja_detail:[],
   la1:[[".cta-btn","la2"]],
   la2:[[".cta-btn","la3"]],
   la3:[[".cta-btn","la4"]],
@@ -724,7 +961,8 @@ const FLOW={
   la8:[[".srchitem","la9"],["#la8direct","la9"]],
   la9:[[".cta-btn","end"]]
 };
-const BACK={la1:"home",la2:"la1",la3:"la2",la4:"la3",la5:"la4",la6:"la5",la7:"la6",la8:"la7",la9:"la8",ci:"home"};
+const BACK={la1:"home",la2:"la1",la3:"la2",la4:"la3",la5:"la4",la6:"la5",la7:"la6",la8:"la7",la9:"la8",ci:"home",
+  ja_intro:"home",ja_purpose:"ja_intro",ja_contract:"ja_purpose",ja_house:"ja_contract",ja_loading:"ja_house",ja_reject:"ja_result",ja_result:"home",ja_detail:"ja_result"};
 // 화면 진입 뷰 = 화면 전체를 그 이벤트 영역으로
 const PAGEVIEW={
   entry:["MY_bs_view","앱 진입 마케팅 배너 팝업 노출 — 이 영역. ✅Mixpanel 확정","25.0만"],
@@ -739,7 +977,15 @@ const PAGEVIEW={
   la8:["LA_company_input_view","직장명 입력/검색 진입 — 화면 전체 영역","6.10만"],
   la9:["LA_income_info_view","직장인 소득정보 입력 진입 — 화면 전체 영역","17.5만"],
   ci:["CI_main_view","신용관리 홈 진입 — 화면 전체. params {type:score, reference:(myhome,OS…), result:(UP/NO_CHANGE/DOWN/ERROR)}. ✅이벤트로그 확정","—"],
-  more:["MY_home_view","전체(더보기) 탭 — MY_home_view {tap:menu}. 화면 전체 영역. ✅이벤트로그 확정","tap=menu"]
+  more:["MY_home_view","전체(더보기) 탭 — MY_home_view {tap:menu}. 화면 전체 영역. ✅이벤트로그 확정","tap=menu"],
+  ja_intro:["JA_intro_view","전세자금대출 인트로 진입 — 화면 전체. params {point:A|B}. ✅이벤트로그 확정","—"],
+  ja_purpose:["JA_purpose_view","전세 목적 선택 진입 — 화면 전체. ✅이벤트로그 확정","—"],
+  ja_contract:["JA_contractinfo_view","전세 계약정보 입력 진입 — 화면 전체. params {service:LA|RA}. ✅이벤트로그 확정","—"],
+  ja_house:["JA_housepossession_view","보유 주택 정보 진입 — 화면 전체. ✅이벤트로그 확정","—"],
+  ja_loading:["JA_prejudgement_view","전세대출 가심사 로딩 진입 — 화면 전체. params {service:LA|RA}. ✅이벤트로그 확정","—"],
+  ja_reject:["JA_loan_reject_view","전세 부결 화면 진입 — 화면 전체. params {point:A|B}. ✅이벤트로그 확정","—"],
+  ja_result:["JA_loanlist_view","전세 한도조회 결과 진입 — 화면 전체. params {product_id, point:A|B}. ✅이벤트로그 확정","—"],
+  ja_detail:["JA_loandetail_view","전세 대출 상품 상세 진입 — 화면 전체. params {product, amount, rate}. ✅이벤트로그 확정","—"]
 };
 document.querySelectorAll(".screenpage").forEach(pg=>{
   const id=pg.dataset.id;
