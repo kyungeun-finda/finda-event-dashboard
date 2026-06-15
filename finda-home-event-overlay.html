@@ -193,7 +193,8 @@ body .screenpage.pageview.hot:hover{ background:rgba(47,95,196,.05); }
 body.showall .screenpage.pageview{ outline:2px solid rgba(47,95,196,.55); outline-offset:-5px; background:transparent; }
 body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " attr(data-ev); display:block; position:sticky; top:0; left:0; z-index:8; width:100%; box-sizing:border-box; background:rgba(47,95,196,.95); color:#fff; font:700 11px/1.5 "SF Mono",Menlo,monospace; padding:6px 11px; white-space:normal; max-width:none; }
 
-#tip{ position:fixed; z-index:9999; background:#1c1c28; color:#fff; border-radius:10px; padding:9px 12px; max-width:264px; box-shadow:0 8px 24px rgba(0,0,0,.3); pointer-events:none; opacity:0; transition:opacity .08s; font-size:12px; }
+#tip{ position:fixed; z-index:9999; background:#1c1c28; color:#fff; border-radius:10px; padding:9px 12px; max-width:264px; box-shadow:0 8px 24px rgba(0,0,0,.3); pointer-events:auto; cursor:pointer; opacity:0; transition:opacity .08s; font-size:12px; }
+#tip:not(.disabled):hover{ outline:2px solid #6b5bf0; }
 #tip.on{ opacity:1; }
 #tip .ev{ font-family:"SF Mono",Menlo,monospace; font-size:12.5px; font-weight:700; word-break:break-all; }
 #tip .tag{ display:inline-block; font-size:10px; font-weight:700; padding:1px 6px; border-radius:5px; margin-left:6px; }
@@ -204,9 +205,6 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
 #tip.disabled .ev{ color:#aeaeba; font-weight:700; }
 #tip.disabled .ds{ color:#9a9aa8; }
 #tip .cp{ color:#7af0c0; margin-top:6px; font-size:10.5px; font-weight:700; }
-body.copymode .hot{ cursor:copy; }
-#copytoast{ position:fixed; left:50%; bottom:40px; transform:translateX(-50%); background:#1c1c28; color:#fff; padding:12px 18px; border-radius:12px; font-size:13px; font-family:"SF Mono",Menlo,monospace; box-shadow:0 8px 28px rgba(0,0,0,.32); z-index:99999; opacity:0; transition:opacity .15s; pointer-events:none; max-width:90vw; }
-#copytoast.on{ opacity:1; }
 </style>
 </head>
 <body>
@@ -215,7 +213,6 @@ body.copymode .hot{ cursor:copy; }
     <h1>🗺️ 핀다 이벤트 로그 뷰어</h1>
     <p>클릭 영역에 마우스를 올리면 <b>이벤트명</b>이 뜨고, <b>클릭하면 실제 플로우처럼 다음 화면으로 이동</b>해요. ‹ 뒤로가기도 동작합니다.</p>
     <label class="toggle"><input type="checkbox" id="showall"> 모든 영역 한 번에 보기</label>
-    <label class="toggle"><input type="checkbox" id="copymode"> 📋 클릭 시 이벤트명 복사</label>
 
     <select id="navsel" class="navsel">
       <optgroup label="앱 진입">
@@ -901,34 +898,47 @@ body.copymode .hot{ cursor:copy; }
 <div id="tip"></div>
 <script>
 const tip=document.getElementById("tip");
-const copymode=document.getElementById("copymode");
 const TYPE={"t-view":"뷰","t-click":"클릭","t-auto":"자동","t-tab":"탭"};
-function showTip(el,x,y){
+function showTip(el){
   const ev=el.dataset.ev,ty=el.dataset.type,ds=el.dataset.desc,gs=el.dataset.g||"";
   const undet = !!ev && ev.indexOf("확인필요")>=0;
   tip.classList.toggle("disabled", undet);
+  tip.dataset.ev = undet ? "" : (ev||"");
   if(undet){
     tip.innerHTML=`<span class="ev">🚫 이벤트명 확인 필요</span>`+(ds?`<div class="ds">${ds}</div>`:"");
   } else {
-    const cphint = (copymode&&copymode.checked) ? "📋 클릭하면 이벤트명 복사" : "⌥ Option+클릭으로 복사";
-    tip.innerHTML=`<span class="ev">${ev}</span><span class="tag ${ty}">${TYPE[ty]}</span>`+(ds?`<div class="ds">${ds}</div>`:"")+(gs&&gs!=="—"?`<div class="gs">📊 30일 ${gs}</div>`:"")+`<div class="cp">${cphint}</div>`;
+    tip.innerHTML=`<span class="ev">${ev}</span><span class="tag ${ty}">${TYPE[ty]}</span>`+(ds?`<div class="ds">${ds}</div>`:"")+(gs&&gs!=="—"?`<div class="gs">📊 30일 ${gs}</div>`:"")+`<div class="cp">📋 여기를 클릭하면 이벤트명 복사</div>`;
   }
   tip.classList.add("on");
-  const w=tip.offsetWidth,h=tip.offsetHeight; let nx=x+14,ny=y+14;
-  if(nx+w>innerWidth)nx=x-w-12; if(ny+h>innerHeight)ny=y-h-12;
+  const r=el.getBoundingClientRect(), w=tip.offsetWidth, h=tip.offsetHeight;
+  let nx=r.left, ny=r.bottom+8;
+  if(nx+w>innerWidth-8) nx=innerWidth-w-8;
+  if(nx<8) nx=8;
+  if(ny+h>innerHeight-8) ny=r.top-h-8;
+  if(ny<8) ny=8;
   tip.style.left=nx+"px"; tip.style.top=ny+"px";
 }
+let hideT;
+const scheduleHide=()=>{ clearTimeout(hideT); hideT=setTimeout(()=>tip.classList.remove("on"),240); };
+const cancelHide=()=>clearTimeout(hideT);
 function bind(){
   document.querySelectorAll(".hot").forEach(el=>{
     if(el._b)return; el._b=1;
-    el.addEventListener("mousemove",e=>{e.stopPropagation();showTip(el,e.clientX,e.clientY);});
-    el.addEventListener("mouseleave",()=>tip.classList.remove("on"));
+    el.addEventListener("mouseenter",()=>{ cancelHide(); showTip(el); });
+    el.addEventListener("mouseleave",scheduleHide);
   });
 }
 bind();
-document.getElementById("screen").addEventListener("mouseleave",()=>tip.classList.remove("on"));
+// 툴팁 위로 마우스가 올라가면 유지, 클릭하면 이벤트명 복사
+tip.addEventListener("mouseenter",cancelHide);
+tip.addEventListener("mouseleave",scheduleHide);
+tip.addEventListener("click",()=>{
+  const ev=tip.dataset.ev||""; if(!ev) return;
+  copyText(ev);
+  const cp=tip.querySelector(".cp"); if(cp){ cp.textContent="✓ 복사됨!"; }
+});
+document.getElementById("screen").addEventListener("mouseleave",scheduleHide);
 document.getElementById("showall").addEventListener("change",e=>document.body.classList.toggle("showall",e.target.checked));
-copymode.addEventListener("change",e=>document.body.classList.toggle("copymode",e.target.checked));
 
 // ---- 이벤트명 복사 ----
 function copyText(t){
@@ -940,21 +950,6 @@ function fallbackCopy(t){
   ta.style.cssText="position:fixed;top:0;left:0;opacity:0"; document.body.appendChild(ta);
   ta.focus(); ta.select(); try{ document.execCommand("copy"); }catch(e){} ta.remove();
 }
-let _ct;
-function copyToast(msg){
-  let t=document.getElementById("copytoast");
-  if(!t){ t=document.createElement("div"); t.id="copytoast"; document.body.appendChild(t); }
-  t.textContent=msg; t.classList.add("on"); clearTimeout(_ct); _ct=setTimeout(()=>t.classList.remove("on"),1600);
-}
-// 복사 모드 ON 또는 Option(⌥)+클릭 → 이벤트명 복사 (네비게이션 차단)
-document.addEventListener("click",e=>{
-  const el=e.target.closest(".hot"); if(!el) return;
-  if(!(copymode.checked || e.altKey)) return;
-  const ev=el.dataset.ev||"";
-  e.preventDefault(); e.stopPropagation();
-  if(!ev || ev.indexOf("확인필요")>=0){ copyToast("⚠️ 이벤트명 확인 필요 — 복사할 값 없음"); return; }
-  copyText(ev); copyToast("📋 복사됨 · "+ev);
-},true);
 
 function goScreen(id){
   if(id==="end"){ toast("🎉 한도조회 실행 → 결과 리스트(LA_loanlist_view)로 이동\\n(결과 화면 스크린샷 주시면 이어서 만들어요)"); return; }
