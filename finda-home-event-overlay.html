@@ -231,6 +231,20 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
         <option value="la7">7 · 직업 선택</option>
         <option value="la8">8 · 직장명 입력</option>
         <option value="la9">9 · 소득 정보 입력</option>
+        <option value="la10">10 · 추가 정보 입력</option>
+        <option value="la11">11 · 주택 주소 입력</option>
+        <option value="la12">12 · 주소 검색결과</option>
+        <option value="la13">13 · 상세주소 입력</option>
+        <option value="la14">14 · 거주정보(선택)</option>
+        <option value="la15">15 · 거주정보(근저당)</option>
+        <option value="la16">16 · 인증수단 선택</option>
+        <option value="la17">17 · 간편인증 대기</option>
+        <option value="la18">18 · 서류 확인중</option>
+        <option value="la19">19 · 연소득 입력(전)</option>
+        <option value="la20">20 · 연소득 입력(후)</option>
+        <option value="la21">21 · 금융사 조회중</option>
+        <option value="la22">22 · 한도조회 결과</option>
+        <option value="la23">23 · 상품 상세</option>
       </optgroup>
       <optgroup label="전세자금대출(JA)">
         <option value="ja_intro">1 · 전세 인트로</option>
@@ -540,7 +554,211 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
       <div class="fieldbox hot t-click" data-ev="LA_healthtype_click" data-type="t-click" data-desc="가입한 의료보험 선택 (직장/지역)" data-g="—"><div class="k" style="color:#8a8a99">가입한 의료보험</div><div class="val">직장의료보험 <span style="float:right;color:#ccc">⌄</span></div></div>
       <div class="fieldbox hot t-click" data-ev="(연소득 입력)" data-type="t-click" data-desc="연소득(세전) 입력" data-g="—"><div class="k">연소득(세전)</div><div class="val">4,000 <span style="float:right">만 원</span></div></div>
       <div style="text-align:center;color:#9a9aa8;font-size:13px;padding:14px 0 0" class="hot t-click" data-ev="LA_income_type_click" data-type="t-click" data-desc="'다른 직업으로 변경할래요' [추정]" data-g="—">다른 직업으로 변경할래요</div>
-      <div class="cta-btn hot t-click" data-ev="LA_income_info_clickCTA" data-type="t-click" data-desc="'확인' — 소득정보 제출 → 한도조회 실행" data-g="17.5만 진입">확인</div>
+      <div class="cta-btn hot t-click" data-ev="LA_income_info_clickCTA" data-type="t-click" data-desc="'확인' — 소득정보 제출" data-g="17.5만 진입">확인</div>
+    </div>
+
+    <!-- ============ LA10 추가 정보 입력(자산정보) ============ -->
+    <div class="screenpage" data-id="la10">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="확인필요" data-type="t-view" data-desc="추가 정보(자산정보) 입력 페이지뷰 — 전용 view 이벤트 미확인(확인 CTA는 LA_asset_clickCTA로 확정). ⚠️확인필요." data-g="—" style="background:#fff4e6;border-color:#ffd9a8;color:#b25a00">👁 자산정보 입력 진입(추정) · <b>확인필요</b></div>
+      <div class="ttl">추가 정보 입력</div>
+      <div class="lbl">거주 형태</div>
+      <div class="chips"><div class="chip sel">자가</div><div class="chip">전·월세</div><div class="chip">기타</div></div>
+      <div class="lbl">자동차 보유</div>
+      <div class="chips" style="grid-template-columns:repeat(2,1fr)"><div class="chip sel hot t-tab" data-ev="LA_asset_viewautobs" data-type="t-tab" data-desc="자동차 '보유중' 선택 시 자동차 입력 유도 바텀시트 노출 = LA_asset_viewautobs. ✅이벤트로그 확정." data-g="—">보유중</div><div class="chip">미보유</div></div>
+      <div class="lbl">자동차 번호</div>
+      <div class="field gray"><span class="big" style="font-size:18px">예: 123가1234</span></div>
+      <div class="hint" style="text-align:left">자동차 담보로 대출 한도가 높아질 수 있어요</div>
+      <div class="lbl">대출 희망 금액</div>
+      <div class="field"><span class="big">1,000</span><span class="unit">만원</span></div>
+      <div class="hint">1천만원</div>
+      <div class="lbl">개인회생 여부</div>
+      <div class="chips" style="grid-template-columns:repeat(2,1fr)"><div class="chip sel">개인회생중</div><div class="chip">미해당</div></div>
+      <div class="lbl">개인회생 변제금 납부</div>
+      <div class="chips" style="grid-template-columns:repeat(2,1fr)"><div class="chip">납부중</div><div class="chip sel">납부완료</div></div>
+      <div class="cta-btn hot t-click" data-ev="LA_asset_clickCTA" data-type="t-click" data-desc="'확인' — 자산정보 입력 완료. params {service:LA|RA, residenttype:거주형태, ownapartment, ownauto …}. ✅이벤트로그 확정." data-g="—">확인</div>
+    </div>
+
+    <!-- ============ LA11 주택 주소 입력 ============ -->
+    <div class="screenpage" data-id="la11">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center"><div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div><span class="hot t-click" data-ev="확인필요" data-type="t-click" data-desc="'입력 건너뛰기' — 전용 이벤트 미확인. ⚠️확인필요." data-g="—" style="padding:6px 18px;font-size:14px;color:#8a8a99">입력 건너뛰기</span></div>
+      <div class="ttl">주택 주소를 입력해주세요</div>
+      <div class="fieldbox hot t-click" data-ev="LA_address_click" data-type="t-click" data-desc="담보지 주소 검색 버튼 클릭. params {service:LA|RA}. ✅이벤트로그 확정." data-g="—"><div class="ph">(예) 잠실주공아파트</div></div>
+      <div class="lbl">주소 검색 TIP</div>
+      <div style="padding:0 22px;font-size:13px;color:#666;line-height:2">• 도로명 + 건물번호 (예: 송파대로 567)<br>• 동/읍/면/리 + 번지 (예: 잠실동 27)<br>• 건물명, 아파트명 (예: 잠실주공아파트)</div>
+      <div style="margin:16px 18px;background:#f4f4f8;border-radius:10px;padding:12px 14px;font-size:12px;color:#8a8a99">ⓘ 지금은 KB시세가 있는 주소만 검색할 수 있어요</div>
+    </div>
+
+    <!-- ============ LA12 주소 검색결과 ============ -->
+    <div class="screenpage" data-id="la12">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="ttl">주택 주소를 입력해주세요</div>
+      <div class="fieldbox"><div class="val">테헤란로</div></div>
+      <div style="margin-top:8px">
+        <div class="srchitem hot t-click" data-ev="LA_address_choice_click" data-type="t-click" data-desc="검색된 아파트 주소 선택. params {service:LA|RA}. ✅이벤트로그 확정." data-g="—"><div class="nm">엘지선릉에클라트(B동)</div><div class="meta">서울특별시 강남구 테헤란로43길 12 (삼성동) · 삼성동 142-3</div></div>
+        <div class="srchitem hot t-click" data-ev="LA_address_choice_click" data-type="t-click" data-desc="검색된 아파트 주소 선택. ✅이벤트로그 확정." data-g="—"><div class="nm">삼성동우정에쉐르II</div><div class="meta">서울특별시 강남구 테헤란로77길 8 (삼성동) · 삼성동 144-10</div></div>
+        <div class="srchitem hot t-click" data-ev="LA_address_choice_click" data-type="t-click" data-desc="검색된 아파트 주소 선택. ✅이벤트로그 확정." data-g="—"><div class="nm">삼성동대성유니드</div><div class="meta">서울특별시 강남구 테헤란로4길 26 (삼성동) · 삼성동 129</div></div>
+        <div class="srchitem hot t-click" data-ev="LA_address_choice_click" data-type="t-click" data-desc="검색된 아파트 주소 선택. ✅이벤트로그 확정." data-g="—"><div class="nm">역삼동우정에쉐르 I</div><div class="meta">서울특별시 강남구 테헤란로4길 32 (역삼동) · 역삼동 826-29</div></div>
+      </div>
+      <div class="hideinfo">더보기 ⌄</div>
+    </div>
+
+    <!-- ============ LA13 상세주소 입력 ============ -->
+    <div class="screenpage" data-id="la13">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="확인필요" data-type="t-view" data-desc="상세주소 입력 페이지뷰 — 전용 view 이벤트 미확인(평형 선택 바텀시트는 LA_pyung_choice_click). ⚠️확인필요." data-g="—" style="background:#fff4e6;border-color:#ffd9a8;color:#b25a00">👁 상세주소 입력 진입(추정) · <b>확인필요</b></div>
+      <div class="ttl">{역삼동에쉐르}의<br>상세주소를 입력해주세요</div>
+      <div class="fieldbox hot t-click" data-ev="LA_pyung_choice_click" data-type="t-click" data-desc="평형 선택 바텀시트에서 평형 선택. params {service:LA|RA}. ✅이벤트로그 확정." data-g="—"><div class="k" style="color:#8a8a99">평형</div><div class="val">34 평 (112.39 ㎡) <span style="float:right;color:#ccc">⌄</span></div></div>
+      <div style="display:flex;gap:11px;margin:0 4px">
+        <div class="fieldbox" style="flex:1"><div class="k" style="color:#8a8a99">동</div><div class="ph">동 입력</div></div>
+        <div class="fieldbox" style="flex:1"><div class="k" style="color:#8a8a99">호수</div><div class="ph">호수 입력</div></div>
+      </div>
+      <div class="chkrow"><span class="chk off">✓</span>1층이에요</div>
+      <div class="cta-btn hot t-click" data-ev="확인필요" data-type="t-click" data-desc="상세주소 '확인' — 전용 CTA 이벤트 미확인. ⚠️확인필요." data-g="—">확인</div>
+    </div>
+
+    <!-- ============ LA14 거주정보(선택 전) ============ -->
+    <div class="screenpage" data-id="la14">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="확인필요" data-type="t-view" data-desc="거주정보 페이지뷰 — 전용 view 이벤트 미확인(선택은 LA_residence_status_click). ⚠️확인필요." data-g="—" style="background:#fff4e6;border-color:#ffd9a8;color:#b25a00">👁 거주정보 진입(추정) · <b>확인필요</b></div>
+      <div class="ttl">거주정보를 알려주세요</div>
+      <div class="lbl">직접 거주하고 있나요?</div>
+      <div class="chips" style="grid-template-columns:repeat(2,1fr)"><div class="chip hot t-click" data-ev="LA_residence_status_click" data-type="t-click" data-desc="거주 여부 선택 (네). params {service:LA|RA}. ✅이벤트로그 확정." data-g="—">네</div><div class="chip hot t-click" data-ev="LA_residence_status_click" data-type="t-click" data-desc="거주 여부 선택 (아니요). ✅이벤트로그 확정." data-g="—">아니요</div></div>
+    </div>
+
+    <!-- ============ LA15 거주정보(근저당 입력) ============ -->
+    <div class="screenpage" data-id="la15">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="ttl">거주정보를 알려주세요</div>
+      <div class="lbl">직접 거주하고 있나요?</div>
+      <div class="chips" style="grid-template-columns:repeat(2,1fr)"><div class="chip sel">네</div><div class="chip">아니요</div></div>
+      <div class="lbl">근저당 설정 금액</div>
+      <div class="field gray"><span class="big" style="font-size:18px">근저당 설정 금액 입력</span><span class="unit">만원</span></div>
+      <div class="chkrow"><span class="chk">✓</span>이 주택을 담보로 받은 대출이 없어요</div>
+      <div class="cta-btn hot t-click" data-ev="확인필요" data-type="t-click" data-desc="거주정보 '확인' — 전용 CTA 이벤트 미확인. ⚠️확인필요." data-g="—">확인</div>
+    </div>
+
+    <!-- ============ LA16 인증수단 선택 ============ -->
+    <div class="screenpage" data-id="la16">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="LA_accurate_view" data-type="t-view" data-desc="건보 스크래핑 간편인증서 선택 페이지 뷰. params {service:LA|RA}. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>LA_accurate_view</b></div>
+      <div class="ttl">인증서로 더 정확한<br>대출 조건을 받아보세요</div>
+      <div class="listrow hot t-click" data-ev="LA_certificate_new_clickkakao" data-type="t-click" data-desc="간편인증 — 카카오 인증서 선택. ✅이벤트로그 확정." data-g="—">💬 카카오 인증서<span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="LA_certificate_new_clickpass" data-type="t-click" data-desc="간편인증 — PASS 인증서 선택. ✅이벤트로그 확정." data-g="—">📱 PASS 인증서<span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="LA_certificate_new_clicknaver" data-type="t-click" data-desc="간편인증 — 네이버 인증서 선택. ✅이벤트로그 확정." data-g="—">🟢 네이버 인증서<span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="LA_certificate_new_clickKICA" data-type="t-click" data-desc="간편인증 — 공동인증서 선택(KICA). ✅이벤트로그 확정." data-g="—"><span>🔐 공동인증서<br><span class="sm">설치된 인증서가 없다면 PC가 필요해요.</span></span><span style="color:#ccc">›</span></div>
+    </div>
+
+    <!-- ============ LA17 카카오 간편인증 대기 ============ -->
+    <div class="screenpage" data-id="la17">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="LA_certificate_bridge_view" data-type="t-view" data-desc="간편인증 대기(브릿지) 페이지 뷰. params {service:LA|RA}. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>LA_certificate_bridge_view</b></div>
+      <div class="ttl">카카오톡 앱에서<br>인증을 완료해주세요</div>
+      <div class="subttl">푸시 알림을 눌러서 인증을 진행할 수 있어요</div>
+      <div style="text-align:center;font-size:70px;margin:50px 0">📲</div>
+      <div class="cta-btn hot t-click" data-ev="LA_certificate_bridge_click_complete" data-type="t-click" data-desc="'인증 완료' 클릭. ✅이벤트로그 확정." data-g="—">인증 완료</div>
+      <div style="text-align:center;color:var(--finda);font-size:14px;font-weight:700;padding:12px 0 18px" class="hot t-click" data-ev="LA_certificate_bridge_click_other" data-type="t-click" data-desc="'다른 인증서 선택하기' 클릭. ✅이벤트로그 확정." data-g="—">다른 인증서 선택하기</div>
+    </div>
+
+    <!-- ============ LA18 서류 확인중 로딩 ============ -->
+    <div class="screenpage" data-id="la18">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="확인필요" data-type="t-view" data-desc="서류(건보 스크래핑) 확인중 로딩 — 전용 view 이벤트 미확인. ⚠️확인필요." data-g="—" style="background:#fff4e6;border-color:#ffd9a8;color:#b25a00">👁 서류 확인중 로딩(추정) · <b>확인필요</b></div>
+      <div class="ttl">김핀다님의 서류를<br>꼼꼼하게 확인중이에요</div>
+      <div style="text-align:center;color:#bbb;font-size:14px;margin-top:50px;line-height:2.2">건강보험 자격득실확인서<br><b style="color:#1c1c28;font-size:16px">📄 건강보험 자격확인서</b><br>건강보험 납부확인서</div>
+      <div style="text-align:center;font-size:12px;color:#9a9aa8;margin-top:30px">(클릭하면 다음으로)</div>
+    </div>
+
+    <!-- ============ LA19 세전 연소득 입력(전) ============ -->
+    <div class="screenpage" data-id="la19">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="확인필요" data-type="t-view" data-desc="세전 연소득 입력 페이지뷰 — 전용 view 이벤트 미확인(후보: LA_income_info 계열). ⚠️확인필요." data-g="—" style="background:#fff4e6;border-color:#ffd9a8;color:#b25a00">👁 연소득 입력 진입(추정) · <b>확인필요</b></div>
+      <div class="ttl">세전 연 소득을 입력해주세요</div>
+      <div class="subttl">국세청에 신고한 소득 기준이에요.</div>
+      <div class="fieldbox hot t-click" data-ev="(연소득 입력)" data-type="t-click" data-desc="연 소득 입력" data-g="—"><div class="ph">연 소득 입력</div></div>
+      <div class="cta-btn ghost">다음</div>
+    </div>
+
+    <!-- ============ LA20 세전 연소득 입력(후) ============ -->
+    <div class="screenpage" data-id="la20">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="ttl">세전 연 소득을 입력해주세요</div>
+      <div class="subttl">국세청에 신고한 소득 기준이에요.</div>
+      <div class="field"><span class="big">5,000</span><span class="unit">만원</span></div>
+      <div class="hint">5천만원</div>
+      <div class="cta-btn hot t-click" data-ev="확인필요" data-type="t-click" data-desc="연소득 입력 후 '다음' — 전용 CTA 이벤트 미확인(후보: LA_income_info_clickCTA). ⚠️확인필요." data-g="—">다음</div>
+    </div>
+
+    <!-- ============ LA21 88개 금융사 조회중 ============ -->
+    <div class="screenpage" data-id="la21">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="LA_prejudgement_view" data-type="t-view" data-desc="가심사 조회 로딩 페이지 뷰. params {service:LA|RA}. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>LA_prejudgement_view</b></div>
+      <div class="ttl">88개 금융사에서<br>대출조건을 찾고있어요</div>
+      <div class="subttl">2% 진행중...</div>
+      <div class="listrow">🏦 전북은행 <span class="sm">조건을 확인 중이에요</span></div>
+      <div class="listrow">🏦 하나은행 <span class="sm">조건을 확인 중이에요</span></div>
+      <div class="listrow">🏦 KB국민은행 <span class="sm">조건을 확인 중이에요</span></div>
+      <div class="hideinfo hot t-click" data-ev="(진행)" data-type="t-click" data-desc="조회 완료 → 결과 (클릭으로 이동)" data-g="—">(클릭하면 결과로)</div>
+    </div>
+
+    <!-- ============ LA22 한도조회 결과 리스트 ============ -->
+    <div class="screenpage" data-id="la22">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(닫기)" data-type="t-click" data-desc="닫기(X)" data-g="—">✕</div>
+      <div class="pvbar hot t-view" data-ev="LA_loanlist_view" data-type="t-view" data-desc="한도조회 결과 화면 랜딩 시. params {product_id(승인 상품 id)}. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>LA_loanlist_view</b></div>
+      <div class="ttl" style="padding-top:4px">오늘만 가능한 4개 조건으로<br>바로 대출 받으세요</div>
+      <div style="font-size:12px;color:#9a9aa8;padding:0 22px 8px">유효시간 24:00:00</div>
+      <div class="card" style="margin:0 14px 12px;display:flex;align-items:center;justify-content:space-between;padding:14px 16px"><span style="font-size:14px;font-weight:600">신청 중인 대출 1건</span><span class="hot t-click" data-ev="LA_progress_clickCTA" data-type="t-click" data-desc="'이어하기' — 신청 중인 대출 이어서 신청. params {product, service:LA}. ✅이벤트로그 확정(iOS 누락 가능)." data-g="—" style="background:#ece8ff;color:var(--finda);font-weight:700;border-radius:18px;padding:7px 14px;font-size:13px">이어하기</span></div>
+      <div style="display:flex;gap:16px;padding:6px 22px;font-size:15px;font-weight:700">
+        <span class="hot t-tab" data-ev="LA_loanlist_clicksorting" data-type="t-tab" data-desc="정렬 — 금리 낮은 순. params {method:&quot;rate&quot;}. ✅이벤트로그 확정." data-g="—" style="color:var(--finda);border-bottom:2px solid var(--finda)">금리 낮은 순</span>
+        <span class="hot t-tab" data-ev="LA_loanlist_clicksorting" data-type="t-tab" data-desc="정렬 — 한도 높은 순. params {method:&quot;limit&quot;}. ✅이벤트로그 확정." data-g="—" style="color:#9a9aa8">한도 높은 순</span>
+      </div>
+      <div style="display:flex;gap:7px;padding:8px 22px;overflow-x:auto">
+        <span class="hot t-click" data-ev="LA_loanlist_clickfilter" data-type="t-click" data-desc="필터 칩 클릭. params {filter:(deposit_today/오늘입금 등)}. ✅이벤트로그 확정." data-g="—" style="flex:0 0 auto;border:1px solid #ddd;border-radius:16px;padding:6px 12px;font-size:12px">핀다카드 이자지원</span>
+        <span class="hot t-click" data-ev="LA_loanlist_clickfilter" data-type="t-click" data-desc="필터 칩 클릭. ✅이벤트로그 확정." data-g="—" style="flex:0 0 auto;border:1px solid #ddd;border-radius:16px;padding:6px 12px;font-size:12px">1금융</span>
+        <span class="hot t-click" data-ev="LA_loanlist_clickfilter" data-type="t-click" data-desc="필터 칩 클릭. ✅이벤트로그 확정." data-g="—" style="flex:0 0 auto;border:1px solid #ddd;border-radius:16px;padding:6px 12px;font-size:12px">오늘입금</span>
+      </div>
+      <div class="listrow hot t-click" data-ev="LA_loanlist_clickproduct" data-type="t-click" data-desc="대출 상품 클릭. params {lowest_rate:최저금리여부, highest_limit:최대한도여부}. ✅이벤트로그 확정." data-g="—"><span>🏦 전북은행 · JB 위풍당당 대출<br><span class="sm">3.15% | 8,000만원 · 이자지원·오늘입금</span></span><span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="LA_loanlist_clickproduct" data-type="t-click" data-desc="대출 상품 클릭. ✅이벤트로그 확정." data-g="—"><span>🏦 KB국민은행 · 국민 신용대출<br><span class="sm">4.20% | 7,000만원 · 이자지원·앱설치없음</span></span><span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="LA_loanlist_clickproduct" data-type="t-click" data-desc="대출 상품 클릭. ✅이벤트로그 확정." data-g="—"><span>🏦 BNK부산은행 · 직장인중금리대출<br><span class="sm">5.15% | 1억 1,000만원 · 이자지원·오늘입금</span></span><span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="LA_loanlist_clickproduct" data-type="t-click" data-desc="대출 상품 클릭. ✅이벤트로그 확정." data-g="—"><span>🏦 하나은행 · 직장인신용대출<br><span class="sm">6.10% | 3,000만원 · 오늘입금·앱설치없음</span></span><span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="LA_loanlist_clickre_check" data-type="t-click" data-desc="'조건 바꿔서 재조회해보기' 클릭. ✅이벤트로그 확정." data-g="—"><span>🔄 조건 바꿔서 재조회해보기</span><span style="color:#ccc">›</span></div>
+      <div class="listrow hot t-click" data-ev="LA_loanlist_clicknot_approved" data-type="t-click" data-desc="'미승인 내역 확인하기' 클릭. ✅이벤트로그 확정." data-g="—"><span>⋯ 미승인 내역 확인하기</span><span style="color:#ccc">›</span></div>
+      <div style="padding:14px 22px 28px;font-size:11px;color:#9a9aa8;line-height:1.7">· 위 대출 상품의 금리는 연 기준 금리입니다. · 대출조건은 당일 자정에 만료됩니다. · 한도와 금리를 조회해도 개인 신용평점에 영향을 주지 않습니다. · 핀다심의필-202501-01-20 (유효기간: 2026.01.20까지)</div>
+    </div>
+
+    <!-- ============ LA23 대출 상품 상세 ============ -->
+    <div class="screenpage" data-id="la23">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="LA_loandetail_view" data-type="t-view" data-desc="대출 상품 상세 페이지 랜딩 시. params {product_id}. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>LA_loandetail_view</b></div>
+      <div class="ttl" style="font-size:20px">전북은행 · 직장인 신용대출<br><span style="color:var(--finda)">연 16.12%</span> · 1,700만원</div>
+      <div style="padding:0 18px;font-size:14px;color:#444;line-height:2.1">
+        <div class="hot t-click" data-ev="LA_loandetail_clickaccurate_tooltip" data-type="t-click" data-desc="'대출 정확도가 우수해요' ⓘ 툴팁 클릭. ✅이벤트로그 확정." data-g="—">✅ 대출 정확도가 우수해요 ⓘ</div>
+        <div class="hot t-click" data-ev="LA_loandetail_clickaccount_tooltip" data-type="t-click" data-desc="'계좌개설이 필요없어요' ⓘ 툴팁 클릭. ✅이벤트로그 확정." data-g="—">✅ 계좌개설이 필요없어요 ⓘ</div>
+        <div>✅ 중도상환수수료가 없어요</div>
+      </div>
+      <div class="card" style="margin:12px 14px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:14px;color:#8a8a99">첫 달 갚을 금액</span><span class="hot t-click" data-ev="LA_loandetail_clickcalculator" data-type="t-click" data-desc="'계산해보기' — 상환 계산기. ✅이벤트로그 확정." data-g="—" style="color:var(--finda);font-weight:700;font-size:13px">계산해보기 ›</span></div>
+        <div style="font-size:24px;font-weight:800;margin-top:6px">619만 1,634원</div>
+        <div style="font-size:12px;color:#9a9aa8">6,550만원 · 12개월 · 원리금 균등상환 시</div>
+      </div>
+      <div class="h3" style="font-size:16px">대출 상품 안내</div>
+      <div class="fieldbox hot t-click" data-ev="LA_loandetail_clickfold" data-type="t-click" data-desc="상품 안내 아코디언 펼치기/접기. ✅이벤트로그 확정." data-g="—"><div class="val" style="font-size:14px">한도 · 대출대상 · 대출금리 · 상환방법 · 수수료 · 금리인하요구권 · 청약철회권 · 위법계약해지권 <span style="float:right;color:#ccc">⌃</span></div></div>
+      <div style="padding:8px 22px 12px;font-size:12px;color:#888;line-height:1.7">· 한도: 최소 3백만원~최대 1억원 · 대출금리: 최저 연 6.40%~19.99% · 상환: 원리금균등분할상환 (상세 약관 텍스트)</div>
+      <div class="cta-btn hot t-click" data-ev="LA_loandetail_clickCTA" data-type="t-click" data-desc="'금융사에서 신청 이어하기' — 대출 신청. params {product_id}. ✅이벤트로그 확정." data-g="—">금융사에서 신청 이어하기</div>
     </div>
 
     <!-- ============ CI 진입 팝업 (비교대출 유도 바텀시트) — 닫으면 신용관리 홈 ============ -->
@@ -990,9 +1208,24 @@ const FLOW={
   la6:[[".cta-btn","la7"]],
   la7:[[".listrow","la8"]],
   la8:[[".srchitem","la9"],["#la8direct","la9"]],
-  la9:[[".cta-btn","end"]]
+  la9:[[".cta-btn","la10"]],
+  la10:[[".cta-btn","la11"]],
+  la11:[[".fieldbox","la12"]],
+  la12:[[".srchitem","la13"]],
+  la13:[[".cta-btn","la14"]],
+  la14:[[".chip","la15"]],
+  la15:[[".cta-btn","la16"]],
+  la16:[[".listrow","la17"]],
+  la17:[[".cta-btn","la18"]],
+  la18:[[".ttl","la19"]],
+  la19:[[".fieldbox","la20"]],
+  la20:[[".cta-btn","la21"]],
+  la21:[[".hideinfo","la22"]],
+  la22:[[".listrow","la23"]],
+  la23:[]
 };
-const BACK={la1:"home",la2:"la1",la3:"la2",la4:"la3",la5:"la4",la6:"la5",la7:"la6",la8:"la7",la9:"la8",ci:"home",
+const BACK={la1:"home",la2:"la1",la3:"la2",la4:"la3",la5:"la4",la6:"la5",la7:"la6",la8:"la7",la9:"la8",
+  la10:"la9",la11:"la10",la12:"la11",la13:"la12",la14:"la13",la15:"la14",la16:"la15",la17:"la16",la18:"la17",la19:"la18",la20:"la19",la21:"la20",la22:"home",la23:"la22",ci:"home",
   ja_intro:"home",ja_purpose:"ja_intro",ja_contract:"ja_purpose",ja_house:"ja_contract",ja_loading:"ja_house",ja_reject:"ja_result",ja_result:"home",ja_detail:"ja_result"};
 // 화면 진입 뷰 = 화면 전체를 그 이벤트 영역으로
 const PAGEVIEW={
@@ -1007,6 +1240,11 @@ const PAGEVIEW={
   la7:["LA_income_type_view","직업(소득유형) 선택 진입 — 화면 전체 영역","6.75만"],
   la8:["LA_company_input_view","직장명 입력/검색 진입 — 화면 전체 영역","6.10만"],
   la9:["LA_income_info_view","직장인 소득정보 입력 진입 — 화면 전체 영역","17.5만"],
+  la16:["LA_accurate_view","건보 스크래핑 간편인증서 선택 진입 — 화면 전체. params {service:LA|RA}. ✅이벤트로그 확정","—"],
+  la17:["LA_certificate_bridge_view","간편인증 대기(브릿지) 진입 — 화면 전체. ✅이벤트로그 확정","—"],
+  la21:["LA_prejudgement_view","가심사 조회 로딩 진입 — 화면 전체. ✅이벤트로그 확정","—"],
+  la22:["LA_loanlist_view","한도조회 결과 진입 — 화면 전체. params {product_id}. ✅이벤트로그 확정","—"],
+  la23:["LA_loandetail_view","대출 상품 상세 진입 — 화면 전체. params {product_id}. ✅이벤트로그 확정","—"],
   ci:["CI_main_view","신용관리 홈 진입 — 화면 전체. params {type:score, reference:(myhome,OS…), result:(UP/NO_CHANGE/DOWN/ERROR)}. ✅이벤트로그 확정","—"],
   more:["MY_home_view","전체(더보기) 탭 — MY_home_view {tap:menu}. 화면 전체 영역. ✅이벤트로그 확정","tap=menu"],
   ja_intro:["JA_intro_view","전세자금대출 인트로 진입 — 화면 전체. params {point:A|B}. ✅이벤트로그 확정","—"],
