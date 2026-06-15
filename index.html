@@ -203,6 +203,10 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
 #tip.disabled{ background:#3a3a42; border:1px dashed #7a7a86; opacity:.95; }
 #tip.disabled .ev{ color:#aeaeba; font-weight:700; }
 #tip.disabled .ds{ color:#9a9aa8; }
+#tip .cp{ color:#7af0c0; margin-top:6px; font-size:10.5px; font-weight:700; }
+body.copymode .hot{ cursor:copy; }
+#copytoast{ position:fixed; left:50%; bottom:40px; transform:translateX(-50%); background:#1c1c28; color:#fff; padding:12px 18px; border-radius:12px; font-size:13px; font-family:"SF Mono",Menlo,monospace; box-shadow:0 8px 28px rgba(0,0,0,.32); z-index:99999; opacity:0; transition:opacity .15s; pointer-events:none; max-width:90vw; }
+#copytoast.on{ opacity:1; }
 </style>
 </head>
 <body>
@@ -211,6 +215,7 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
     <h1>🗺️ 핀다 이벤트 로그 뷰어</h1>
     <p>클릭 영역에 마우스를 올리면 <b>이벤트명</b>이 뜨고, <b>클릭하면 실제 플로우처럼 다음 화면으로 이동</b>해요. ‹ 뒤로가기도 동작합니다.</p>
     <label class="toggle"><input type="checkbox" id="showall"> 모든 영역 한 번에 보기</label>
+    <label class="toggle"><input type="checkbox" id="copymode"> 📋 클릭 시 이벤트명 복사</label>
 
     <select id="navsel" class="navsel">
       <optgroup label="앱 진입">
@@ -896,6 +901,7 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
 <div id="tip"></div>
 <script>
 const tip=document.getElementById("tip");
+const copymode=document.getElementById("copymode");
 const TYPE={"t-view":"뷰","t-click":"클릭","t-auto":"자동","t-tab":"탭"};
 function showTip(el,x,y){
   const ev=el.dataset.ev,ty=el.dataset.type,ds=el.dataset.desc,gs=el.dataset.g||"";
@@ -904,7 +910,8 @@ function showTip(el,x,y){
   if(undet){
     tip.innerHTML=`<span class="ev">🚫 이벤트명 확인 필요</span>`+(ds?`<div class="ds">${ds}</div>`:"");
   } else {
-    tip.innerHTML=`<span class="ev">${ev}</span><span class="tag ${ty}">${TYPE[ty]}</span>`+(ds?`<div class="ds">${ds}</div>`:"")+(gs&&gs!=="—"?`<div class="gs">📊 30일 ${gs}</div>`:"");
+    const cphint = (copymode&&copymode.checked) ? "📋 클릭하면 이벤트명 복사" : "⌥ Option+클릭으로 복사";
+    tip.innerHTML=`<span class="ev">${ev}</span><span class="tag ${ty}">${TYPE[ty]}</span>`+(ds?`<div class="ds">${ds}</div>`:"")+(gs&&gs!=="—"?`<div class="gs">📊 30일 ${gs}</div>`:"")+`<div class="cp">${cphint}</div>`;
   }
   tip.classList.add("on");
   const w=tip.offsetWidth,h=tip.offsetHeight; let nx=x+14,ny=y+14;
@@ -921,6 +928,33 @@ function bind(){
 bind();
 document.getElementById("screen").addEventListener("mouseleave",()=>tip.classList.remove("on"));
 document.getElementById("showall").addEventListener("change",e=>document.body.classList.toggle("showall",e.target.checked));
+copymode.addEventListener("change",e=>document.body.classList.toggle("copymode",e.target.checked));
+
+// ---- 이벤트명 복사 ----
+function copyText(t){
+  if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(t).catch(()=>fallbackCopy(t)); }
+  else fallbackCopy(t);
+}
+function fallbackCopy(t){
+  const ta=document.createElement("textarea"); ta.value=t;
+  ta.style.cssText="position:fixed;top:0;left:0;opacity:0"; document.body.appendChild(ta);
+  ta.focus(); ta.select(); try{ document.execCommand("copy"); }catch(e){} ta.remove();
+}
+let _ct;
+function copyToast(msg){
+  let t=document.getElementById("copytoast");
+  if(!t){ t=document.createElement("div"); t.id="copytoast"; document.body.appendChild(t); }
+  t.textContent=msg; t.classList.add("on"); clearTimeout(_ct); _ct=setTimeout(()=>t.classList.remove("on"),1600);
+}
+// 복사 모드 ON 또는 Option(⌥)+클릭 → 이벤트명 복사 (네비게이션 차단)
+document.addEventListener("click",e=>{
+  const el=e.target.closest(".hot"); if(!el) return;
+  if(!(copymode.checked || e.altKey)) return;
+  const ev=el.dataset.ev||"";
+  e.preventDefault(); e.stopPropagation();
+  if(!ev || ev.indexOf("확인필요")>=0){ copyToast("⚠️ 이벤트명 확인 필요 — 복사할 값 없음"); return; }
+  copyText(ev); copyToast("📋 복사됨 · "+ev);
+},true);
 
 function goScreen(id){
   if(id==="end"){ toast("🎉 한도조회 실행 → 결과 리스트(LA_loanlist_view)로 이동\\n(결과 화면 스크린샷 주시면 이어서 만들어요)"); return; }
