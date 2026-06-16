@@ -220,6 +220,7 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
       <optgroup label="앱 진입">
         <option value="entry">진입 배너 팝업</option>
         <option value="home">홈</option>
+        <option value="home_md">홈 (마이데이터 연동 후)</option>
       </optgroup>
       <optgroup label="비교대출(LA) 한도조회">
         <option value="la1">1 · 한도조회 인트로</option>
@@ -406,6 +407,106 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
         <div class="g on hot t-view" data-ev="MY_home_view (tap=main)" data-type="t-view" data-desc="홈 탭 — 홈 진입(페이지 뷰)" data-g="27.3만"><span class="e">🏠</span>홈</div>
         <div class="g hot t-click" data-ev="NS_news_view (tap=news)" data-type="t-click" data-desc="포인트/혜택 탭 이동 — 핀다소식(NS)" data-g="혜택탭 표준"><span class="e">Ⓟ</span>포인트</div>
         <div id="gnb-more" class="g hot t-click" data-ev="MY_home_view (tap=menu)" data-type="t-click" data-desc="전체(더보기) 탭 → 전체 메뉴" data-g="tap=menu"><span class="e">☰</span>전체</div>
+      </div>
+    </div>
+
+    <!-- ============ 홈 (마이데이터 연동 후) ============ -->
+    <div class="screenpage" data-id="home_md">
+      <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
+      <div class="hdr">
+        <span class="logo">finda</span>
+        <span style="margin-left:auto;display:flex;gap:14px;align-items:center">
+          <span class="hot t-click" data-ev="확인필요" data-type="t-click" data-desc="상단 프로필/안심 아이콘(🛡️) 클릭 — ⚠️확인필요. MY_top_nav 계열에 알림(notification) 외 별도 이벤트가 없어 단정 불가." data-g="—" style="font-size:19px">🛡️</span>
+          <span class="bell hot t-click" data-ev="MY_top_nav_click_notification" data-type="t-click" data-desc="상단 알림(빨콩) 클릭. ✅Mixpanel 확정." data-g="1.99만">🔔</span>
+        </span>
+      </div>
+      <div class="pvbar hot t-view" data-ev="MY_home_view" data-type="t-view" data-desc="마이데이터 연동 후 홈 — 연동 여부와 무관하게 동일한 MY_home_view 페이지뷰(금융생활 섹션이 실데이터로 채워진 상태). property tap=main/news/menu로 진입 GNB 구분." data-g="27.3만">👁 화면 진입 시 발생 · <b>MY_home_view</b><span class="g">📊 27.3만</span></div>
+      <div class="h3">김핀다님을 위해 준비했어요</div>
+      <div class="duo">
+        <div id="home-loan-get-md" class="c hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="맞춤 추천 — 대출 받기 (category=all) → 비교대출 한도조회(LA) 진입. ✅이 화면으로 가는 것 확인됨." data-g="14.3만"><div class="ic">💰</div><div class="s">400여개 상품 비교하고</div><div class="b">대출 받기</div></div>
+        <div class="c hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="맞춤 추천 — 대출 갈아타기 (category=refinance) [✅확인]" data-g="14.3만"><div class="ic">🔄</div><div class="s">더 낮은금리·높은한도</div><div class="b">대출 갈아타기</div></div>
+      </div>
+      <div class="quick">
+        <span class="qbadge">대출이자 지원</span>
+        <div class="qgrid">
+          <div class="qi hot t-click" data-ev="MY_home_click_PC" data-type="t-click" data-desc="퀵메뉴 — 핀다카드 (MY_home_new_click category=PC · 레거시 MY_home_click_PC 병존) [⚠️확인]" data-g="13"><span class="e">💳</span>핀다카드</div>
+          <div class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 사업자대출 (category=privatebusiness)" data-g="14.3만"><span class="e">🏢</span>사업자대출</div>
+          <div class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 주택담보대출 (category=mortgage)" data-g="14.3만"><span class="e">🏠</span>주택담보대출</div>
+          <div id="home-jeonse-md" class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 전세대출 (category=jeonse) → 전세자금대출(JA) 한도조회 진입. ✅확인." data-g="14.3만"><span class="e">🏠</span>전세대출</div>
+          <div class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 우수대부 (category=LENDER)" data-g="14.3만"><span class="e">💰</span>우수대부</div>
+          <div class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 신용카드 찾기 (category=CC)" data-g="14.3만"><span class="e">💳</span>신용카드 찾기</div>
+          <div class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 차 구매대출 (category=autoloan)" data-g="14.3만"><span class="e">🚗</span>차 구매대출</div>
+          <div class="qi hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="퀵메뉴 — 차 리스렌트 (category=lease)" data-g="14.3만"><span class="e">🚙</span>차 리스렌트</div>
+        </div>
+      </div>
+      <!-- 이번 주 나갈 돈 (MyData 연동 상환일정) -->
+      <div class="card hot t-view" data-ev="MY_fl_view_view" data-type="t-view" data-desc="금융생활(이번 주 나갈 돈·카드사용·현금자산) 섹션 노출. 마이데이터 연동 후 실데이터로 채워진 상태. ✅Mixpanel 확정." data-g="27.3만">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span class="hot t-click" data-ev="MY_fl_header_click" data-type="t-click" data-desc="'이번 주 나갈 돈' 섹션 헤더 클릭. ✅Mixpanel 확정(발생량 적음)." data-g="566" style="font-size:18px;font-weight:800">이번 주 나갈 돈</span>
+          <span class="hot t-click" data-ev="확인필요" data-type="t-click" data-desc="새로고침(🔄) — 마이데이터 재동기화. ⚠️확인필요: MY_fl 계열에 새로고침 전용 이벤트 미발견(헤더클릭 MY_fl_header_click 가능성 있으나 단정 불가)." data-g="—" style="font-size:18px;color:#8a8a99">↻</span>
+        </div>
+        <div style="font-size:13px;color:#9a9aa8;margin:10px 0 2px">10.28(월) <span style="color:#c8c8d0">|</span> 오늘</div>
+        <div class="hot t-click" data-ev="MY_fl_days_click_schedule" data-type="t-click" data-desc="상환일정 개별 항목 클릭 — '이번 주 나갈 돈' 일정 행. ✅Mixpanel 확정." data-g="367" style="display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #f4f4f8">
+          <span style="width:24px;height:24px;border-radius:50%;background:#ff5b6e;display:inline-block;flex:none"></span>
+          <span style="flex:1"><div style="font-size:13px;color:#5a5a68">우리나라사랑청년대출</div><div style="font-weight:800;font-size:16px">600,000원</div></span>
+          <span style="font-size:13px;color:#9a9aa8">출금 완료</span>
+        </div>
+        <div style="font-size:13px;color:#9a9aa8;margin:14px 0 2px">10.30(수) <span style="color:#c8c8d0">|</span> 2일 전</div>
+        <div class="hot t-click" data-ev="MY_fl_days_click_schedule" data-type="t-click" data-desc="상환일정 개별 항목 클릭. ✅Mixpanel 확정." data-g="367" style="display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #f4f4f8">
+          <span style="width:24px;height:24px;border-radius:6px;background:#2b2b33;display:inline-block;flex:none"></span>
+          <span style="flex:1"><div style="font-size:13px;color:#5a5a68">현대카드</div><div style="font-weight:800;font-size:16px">800,000원</div></span>
+          <span style="font-size:13px;color:#ff5b6e;font-weight:700">잔액 부족</span>
+        </div>
+        <div class="hot t-click" data-ev="MY_fl_days_click_schedule" data-type="t-click" data-desc="상환일정 개별 항목 클릭. ✅Mixpanel 확정." data-g="367" style="display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #f4f4f8">
+          <span style="width:24px;height:24px;border-radius:6px;background:#f5a623;display:inline-block;flex:none"></span>
+          <span style="flex:1"><div style="font-size:13px;color:#5a5a68">국민카드</div><div style="font-weight:800;font-size:16px">750,000원</div></span>
+          <span style="font-size:13px;color:#9a9aa8">출금계좌 미연결</span>
+        </div>
+        <div style="font-size:13px;color:#9a9aa8;margin:14px 0 2px">11.1(금) <span style="color:#c8c8d0">|</span> 4일 전</div>
+        <div class="hot t-click" data-ev="MY_fl_days_click_schedule" data-type="t-click" data-desc="상환일정 개별 항목 클릭. ✅Mixpanel 확정." data-g="367" style="display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #f4f4f8">
+          <span style="width:24px;height:24px;border-radius:50%;background:#3b6ef5;display:inline-block;flex:none"></span>
+          <span style="flex:1"><div style="font-size:13px;color:#5a5a68">주택담보대출</div><div style="font-weight:800;font-size:16px">600,000원</div></span>
+        </div>
+        <div class="hot t-click" data-ev="MY_fl_days_click_schedule" data-type="t-click" data-desc="상환일정 개별 항목 클릭. ✅Mixpanel 확정." data-g="367" style="display:flex;align-items:center;gap:11px;padding:11px 0">
+          <span style="width:24px;height:24px;border-radius:50%;background:#4f8af7;display:inline-block;flex:none"></span>
+          <span style="flex:1"><div style="font-size:13px;color:#5a5a68">토스예스대출</div><div style="font-weight:800;font-size:16px">600,000원</div></span>
+        </div>
+        <div class="hot t-click" data-ev="MY_fl_days_click_more" data-type="t-click" data-desc="'다음 일정보기' 클릭 → 상환일정(LM) 전체. ✅Mixpanel 확정." data-g="2.69만" style="text-align:center;color:#6b5bd6;font-weight:700;font-size:14px;padding:14px 0 2px">다음 일정보기 ›</div>
+      </div>
+      <!-- 내 카드 사용금액 -->
+      <div class="card hot t-click" data-ev="MY_fl_cardsum_click_action" data-type="t-click" data-desc="'내 카드 사용금액' 카드 클릭 → 카드 사용내역. ✅Mixpanel 확정." data-g="4,450">
+        <div style="font-size:18px;font-weight:800;margin-bottom:12px">내 카드 사용금액</div>
+        <div style="display:flex;align-items:center;gap:11px">
+          <span style="font-size:26px">🧾</span>
+          <span><div style="font-size:13px;color:#8a8a99">10월 카드 사용금액</div><div style="font-weight:800;font-size:20px">4,200,000원</div></span>
+        </div>
+      </div>
+      <!-- 내 현금·자산 -->
+      <div class="card hot t-click" data-ev="MY_fl_accountsum_click_action" data-type="t-click" data-desc="'내 현금·자산' 입출금·예적금 잔액 카드 클릭 → 자산 상세. ✅Mixpanel 확정." data-g="1.07만">
+        <div style="font-size:18px;font-weight:800;margin-bottom:12px">내 현금 · 자산</div>
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px">
+          <span style="font-size:26px">💳</span>
+          <span><div style="font-size:13px;color:#8a8a99">입출금·예적금 잔액</div><div style="font-weight:800;font-size:20px">6,200,000원</div></span>
+        </div>
+        <div class="tabs" style="margin:0;padding-top:14px;border-top:1px solid #f4f4f8;display:flex;justify-content:space-between">
+          <span class="hot t-tab" data-ev="MY_fl_asset_click" data-type="t-tab" data-desc="자산 탭 (대출). ✅Mixpanel 확정." data-g="1.39만">대출 4</span>
+          <span class="hot t-tab" data-ev="MY_fl_asset_click" data-type="t-tab" data-desc="자산 탭 (카드). ✅Mixpanel 확정." data-g="1.39만">카드 3</span>
+          <span class="hot t-tab" data-ev="MY_fl_asset_click" data-type="t-tab" data-desc="자산 탭 (입출금). ✅Mixpanel 확정." data-g="1.39만">입출금 12</span>
+          <span class="hot t-tab" data-ev="MY_fl_asset_click" data-type="t-tab" data-desc="자산 탭 (예적금). ✅Mixpanel 확정." data-g="1.39만">예적금 6</span>
+        </div>
+      </div>
+      <div class="duo">
+        <div id="home-credit-md" class="c hot t-click" data-ev="MY_fl_credit_click_action" data-type="t-click" data-desc="내 신용점수 → 신용관리(CI). ✅Mixpanel 확정." data-g="2.90만"><div class="ic">🔍</div><div class="s">내 신용점수</div><div class="b">768점</div></div>
+        <div class="c hot t-click" data-ev="MY_home_click_CC" data-type="t-click" data-desc="혜택 많은 신용카드 → 카드비교 [추정]" data-g="2,439"><div class="ic">💳</div><div class="s">혜택 많은</div><div class="b">신용카드 찾기</div></div>
+      </div>
+      <div class="feed">
+        <h3 class="sec">핀다소식</h3>
+        <div class="adband blue hot t-click" data-ev="MY_category_item_click" data-type="t-click" data-desc="핀다소식 '1금융대출 ...' 카드 클릭. view=MY_category_item_view. params {id, category}. [추정 — postcard/category 컴포넌트 구분 확인 권장]" data-g="노출 27.2만 · 클릭 2.49만">1금융대출 LMS 받을 수 있을까?</div>
+      </div>
+      <div class="gnb">
+        <div class="g on hot t-view" data-ev="MY_home_view (tap=main)" data-type="t-view" data-desc="홈 탭 — 홈 진입(페이지 뷰)" data-g="27.3만"><span class="e">🏠</span>홈</div>
+        <div class="g hot t-click" data-ev="NS_news_view (tap=news)" data-type="t-click" data-desc="핀다혜택 탭 이동 — 핀다소식(NS)" data-g="혜택탭 표준"><span class="e">Ⓟ</span>핀다혜택</div>
+        <div id="gnb-more-md" class="g hot t-click" data-ev="MY_home_view (tap=menu)" data-type="t-click" data-desc="전체(더보기) 탭 → 전체 메뉴" data-g="tap=menu"><span class="e">☰</span>전체</div>
       </div>
     </div>
 
@@ -1188,6 +1289,7 @@ document.getElementById("navsel").addEventListener("change",e=>goScreen(e.target
 const FLOW={
   entry:[["#entry-close","home"],["#entry-hide","home"],["#entry-cta","home"],["#entry-loan","home"],["#entry-nudge-x","home"]],
   home:[["#home-loan-get","la1"],["#home-credit","ci_pop"],["#gnb-more","more"],["#home-jeonse","ja_intro"]],
+  home_md:[["#home-loan-get-md","la1"],["#home-credit-md","ci_pop"],["#gnb-more-md","more"],["#home-jeonse-md","ja_intro"]],
   ci_pop:[["#cipop-cta","ci"],["#cipop-dim","ci"]],
   ci:[],
   more:[["#more-credit","ci"],["#more-gnb-home","home"]],
@@ -1235,6 +1337,7 @@ const BACK={la1:"home",la2:"la1",la3:"la2",la4:"la3",la5:"la4",la6:"la5",la7:"la
 const PAGEVIEW={
   entry:["MY_bs_view","앱 진입 마케팅 배너 팝업 노출 — 이 영역. ✅Mixpanel 확정","25.0만"],
   home:["MY_home_view","홈 화면 진입 시 자동 발생(페이지뷰) — 이 화면 전체가 이 이벤트 영역. property tap=main/news/menu.","27.3만"],
+  home_md:["MY_home_view","마이데이터 연동 후 홈 — 연동 여부와 무관하게 동일한 MY_home_view 페이지뷰(금융생활 섹션이 실데이터로 채워진 상태). property tap=main/news/menu.","27.3만"],
   la1:["LA_intro_view","비교대출 한도조회 인트로 진입 — 화면 전체 영역","19.2만"],
   la2:["LA_purpose_view","⚠️ 확인필요 — 진입뷰로 매핑했으나 30일 11명으로 거의 안 찍힘. 실제 이벤트가 다를 수 있음.","11 ⚠️"],
   la3:["LA_auth_view","본인 정보 확인 진입 — 화면 전체 영역","18.5만"],
