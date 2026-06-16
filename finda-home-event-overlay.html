@@ -561,7 +561,7 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
     <div class="screenpage" data-id="la10">
       <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
       <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
-      <div class="pvbar hot t-view" data-ev="확인필요" data-type="t-view" data-desc="추가 정보(자산정보) 입력 페이지뷰 — 전용 view 이벤트 미확인(확인 CTA는 LA_asset_clickCTA로 확정). ⚠️확인필요." data-g="—" style="background:#fff4e6;border-color:#ffd9a8;color:#b25a00">👁 자산정보 입력 진입(추정) · <b>확인필요</b></div>
+      <div class="pvbar hot t-view" data-ev="LA_asset_view" data-type="t-view" data-desc="추가 정보(자산정보) 입력 페이지 뷰. ✅Mixpanel 확정." data-g="—">👁 화면 진입 시 발생 · <b>LA_asset_view</b></div>
       <div class="ttl">추가 정보 입력</div>
       <div class="lbl">거주 형태</div>
       <div class="chips"><div class="chip sel">자가</div><div class="chip">전·월세</div><div class="chip">기타</div></div>
@@ -625,23 +625,24 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
     <div class="screenpage" data-id="la14">
       <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
       <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
-      <div class="pvbar hot t-view" data-ev="확인필요" data-type="t-view" data-desc="거주정보 페이지뷰 — 전용 view 이벤트 미확인(선택은 LA_residence_status_click). ⚠️확인필요." data-g="—" style="background:#fff4e6;border-color:#ffd9a8;color:#b25a00">👁 거주정보 진입(추정) · <b>확인필요</b></div>
+      <div class="pvbar hot t-view" data-ev="MA_houseresident_view" data-type="t-view" data-desc="거주정보(직접 거주 여부) 화면 뷰. ✅Mixpanel 확정 — 담보주택 거주자 정보로 MA 계열 공용 이벤트(residence/LA_house 명칭은 미존재)." data-g="—">👁 화면 진입 시 발생 · <b>MA_houseresident_view</b></div>
       <div class="ttl">거주정보를 알려주세요</div>
       <div class="lbl">직접 거주하고 있나요?</div>
-      <div class="chips" style="grid-template-columns:repeat(2,1fr)"><div class="chip hot t-click" data-ev="LA_residence_status_click" data-type="t-click" data-desc="거주 여부 선택 (네). params {service:LA|RA}. ✅이벤트로그 확정." data-g="—">네</div><div class="chip hot t-click" data-ev="LA_residence_status_click" data-type="t-click" data-desc="거주 여부 선택 (아니요). ✅이벤트로그 확정." data-g="—">아니요</div></div>
+      <div class="chips" style="grid-template-columns:repeat(2,1fr)"><div class="chip hot t-click" data-ev="확인필요" data-type="t-click" data-desc="'직접 거주' 토글(네) — 토글 전용 이벤트 미확인(화면 확인 CTA는 MA_houseresident_clickCTA). ⚠️확인필요." data-g="—">네</div><div class="chip hot t-click" data-ev="확인필요" data-type="t-click" data-desc="'직접 거주' 토글(아니요) — 토글 전용 이벤트 미확인. ⚠️확인필요." data-g="—">아니요</div></div>
     </div>
 
     <!-- ============ LA15 거주정보(근저당 입력) ============ -->
     <div class="screenpage" data-id="la15">
       <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
       <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="MA_houseresident_view" data-type="t-view" data-desc="거주정보 화면 뷰(직접거주 선택 후 근저당 입력). ✅Mixpanel 확정 — MA 계열 공용 이벤트." data-g="—">👁 화면 진입 시 발생 · <b>MA_houseresident_view</b></div>
       <div class="ttl">거주정보를 알려주세요</div>
       <div class="lbl">직접 거주하고 있나요?</div>
       <div class="chips" style="grid-template-columns:repeat(2,1fr)"><div class="chip sel">네</div><div class="chip">아니요</div></div>
       <div class="lbl">근저당 설정 금액</div>
       <div class="field gray"><span class="big" style="font-size:18px">근저당 설정 금액 입력</span><span class="unit">만원</span></div>
       <div class="chkrow"><span class="chk">✓</span>이 주택을 담보로 받은 대출이 없어요</div>
-      <div class="cta-btn hot t-click" data-ev="확인필요" data-type="t-click" data-desc="거주정보 '확인' — 전용 CTA 이벤트 미확인. ⚠️확인필요." data-g="—">확인</div>
+      <div class="cta-btn hot t-click" data-ev="MA_houseresident_clickCTA" data-type="t-click" data-desc="'확인' — 거주정보 입력 완료. ✅Mixpanel 확정 — MA 계열 공용 이벤트(직접거주·근저당 정보 제출)." data-g="—">확인</div>
     </div>
 
     <!-- ============ LA16 인증수단 선택 ============ -->
@@ -704,7 +705,7 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
     <div class="screenpage" data-id="la21">
       <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
       <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
-      <div class="pvbar hot t-view" data-ev="LA_prejudgement_view" data-type="t-view" data-desc="가심사 조회 로딩 페이지 뷰. params {service:LA|RA}. ✅이벤트로그 확정." data-g="—">👁 화면 진입 시 발생 · <b>LA_prejudgement_view</b></div>
+      <div class="pvbar hot t-view" data-ev="LA_prejudgement_progress_view" data-type="t-view" data-desc="88개 금융사 조회 진행률 로딩 페이지 뷰. ✅Mixpanel 확정. (LA_prejudgement_view는 가심사 결과 등 별도 화면)" data-g="—">👁 화면 진입 시 발생 · <b>LA_prejudgement_progress_view</b></div>
       <div class="ttl">88개 금융사에서<br>대출조건을 찾고있어요</div>
       <div class="subttl">2% 진행중...</div>
       <div class="listrow">🏦 전북은행 <span class="sm">조건을 확인 중이에요</span></div>
@@ -1240,9 +1241,12 @@ const PAGEVIEW={
   la7:["LA_income_type_view","직업(소득유형) 선택 진입 — 화면 전체 영역","6.75만"],
   la8:["LA_company_input_view","직장명 입력/검색 진입 — 화면 전체 영역","6.10만"],
   la9:["LA_income_info_view","직장인 소득정보 입력 진입 — 화면 전체 영역","17.5만"],
+  la10:["LA_asset_view","추가 정보(자산정보) 입력 진입 — 화면 전체. ✅Mixpanel 확정","—"],
+  la14:["MA_houseresident_view","거주정보(직접 거주 여부) 진입 — 화면 전체. ✅Mixpanel 확정(MA 계열 공용)","—"],
+  la15:["MA_houseresident_view","거주정보(근저당 입력) 진입 — 화면 전체. ✅Mixpanel 확정(MA 계열 공용)","—"],
   la16:["LA_accurate_view","건보 스크래핑 간편인증서 선택 진입 — 화면 전체. params {service:LA|RA}. ✅이벤트로그 확정","—"],
   la17:["LA_certificate_bridge_view","간편인증 대기(브릿지) 진입 — 화면 전체. ✅이벤트로그 확정","—"],
-  la21:["LA_prejudgement_view","가심사 조회 로딩 진입 — 화면 전체. ✅이벤트로그 확정","—"],
+  la21:["LA_prejudgement_progress_view","88개 금융사 조회 진행률 로딩 진입 — 화면 전체. ✅Mixpanel 확정","—"],
   la22:["LA_loanlist_view","한도조회 결과 진입 — 화면 전체. params {product_id}. ✅이벤트로그 확정","—"],
   la23:["LA_loandetail_view","대출 상품 상세 진입 — 화면 전체. params {product_id}. ✅이벤트로그 확정","—"],
   ci:["CI_main_view","신용관리 홈 진입 — 화면 전체. params {type:score, reference:(myhome,OS…), result:(UP/NO_CHANGE/DOWN/ERROR)}. ✅이벤트로그 확정","—"],
