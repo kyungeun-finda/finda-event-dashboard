@@ -220,7 +220,7 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
       <optgroup label="앱 진입">
         <option value="entry">진입 배너 팝업</option>
         <option value="home">홈</option>
-        <option value="home_md">홈 (마이데이터 연동 후)</option>
+        <option value="home_md" selected>홈 (마이데이터 연동 후)</option>
       </optgroup>
       <optgroup label="비교대출(LA) 한도조회">
         <option value="la1">1 · 한도조회 인트로</option>
@@ -284,7 +284,7 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
   <div class="stage"><div class="phone"><div class="screen" id="screen">
 
     <!-- ============ 진입 배너 팝업 ============ -->
-    <div class="screenpage on" data-id="entry">
+    <div class="screenpage" data-id="entry">
       <div class="statusbar"><span>11:41</span><span class="r">●●●● 5G <span class="batt">100</span></span></div>
       <div class="hdr">
         <span class="logo">finda</span>
@@ -411,7 +411,7 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
     </div>
 
     <!-- ============ 홈 (마이데이터 연동 후) ============ -->
-    <div class="screenpage" data-id="home_md">
+    <div class="screenpage on" data-id="home_md">
       <div class="statusbar"><span>3:59</span><span class="r">●●●● 5G <span class="batt">82</span></span></div>
       <div class="hdr">
         <span class="logo">finda</span>
@@ -421,6 +421,12 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
         </span>
       </div>
       <div class="pvbar hot t-view" data-ev="MY_home_view" data-type="t-view" data-desc="마이데이터 연동 후 홈 — 연동 여부와 무관하게 동일한 MY_home_view 페이지뷰(금융생활 섹션이 실데이터로 채워진 상태). property tap=main/news/menu로 진입 GNB 구분." data-g="27.3만">👁 화면 진입 시 발생 · <b>MY_home_view</b><span class="g">📊 27.3만</span></div>
+      <div class="card promo hot t-click" data-ev="MY_top_banner_view / _click" data-type="t-click" data-desc="상단 스마트배너 노출(view)/클릭(click) — 마이데이터 연동 후에도 동일하게 노출. ✅Mixpanel 확정." data-g="노출 26.1만 · 클릭 6.0만">
+        <span class="x hot t-click" data-ev="MY_top_banner_click_x" data-type="t-click" data-desc="상단 배너 닫기(X). ✅Mixpanel 확정." data-g="1.8만">×</span>
+        <h2>핀다에서 신용카드 발급하면<br>최대 19만원 드려요</h2>
+        <div class="cc"></div>
+        <div class="cta">지금 확인해보기</div>
+      </div>
       <div class="h3">김핀다님을 위해 준비했어요</div>
       <div class="duo">
         <div id="home-loan-get-md" class="c hot t-click" data-ev="MY_home_new_click" data-type="t-click" data-desc="맞춤 추천 — 대출 받기 (category=all) → 비교대출 한도조회(LA) 진입. ✅이 화면으로 가는 것 확인됨." data-g="14.3만"><div class="ic">💰</div><div class="s">400여개 상품 비교하고</div><div class="b">대출 받기</div></div>
@@ -1287,12 +1293,12 @@ document.getElementById("navsel").addEventListener("change",e=>goScreen(e.target
 
 // ---- 프로토타입 플로우 전환 ----
 const FLOW={
-  entry:[["#entry-close","home"],["#entry-hide","home"],["#entry-cta","home"],["#entry-loan","home"],["#entry-nudge-x","home"]],
+  entry:[["#entry-close","home_md"],["#entry-hide","home_md"],["#entry-cta","home_md"],["#entry-loan","home_md"],["#entry-nudge-x","home_md"]],
   home:[["#home-loan-get","la1"],["#home-credit","ci_pop"],["#gnb-more","more"],["#home-jeonse","ja_intro"]],
   home_md:[["#home-loan-get-md","la1"],["#home-credit-md","ci_pop"],["#gnb-more-md","more"],["#home-jeonse-md","ja_intro"]],
   ci_pop:[["#cipop-cta","ci"],["#cipop-dim","ci"]],
   ci:[],
-  more:[["#more-credit","ci"],["#more-gnb-home","home"]],
+  more:[["#more-credit","ci"],["#more-gnb-home","home_md"]],
   ja_intro:[[".cta-btn","ja_purpose"]],
   ja_purpose:[[".listrow","ja_contract"]],
   ja_contract:[['[data-ev="(날짜 입력)"]',"ja_date"],[".cta-btn","ja_pop1"]],
@@ -1301,7 +1307,7 @@ const FLOW={
   ja_pop2:[[".pbtn.fill","ja_house"],[".pbtn.ghost","ja_contract"]],
   ja_house:[[".listrow","ja_terms"]],
   ja_terms:[[".cta-btn","ja_loading"]],
-  ja_pop3:[[".pbtn.fill","ja_loading"],[".pbtn.ghost","home"]],
+  ja_pop3:[[".pbtn.fill","ja_loading"],[".pbtn.ghost","home_md"]],
   ja_loading:[[".pvbar","ja_result"],[".ttl","ja_result"],[".subttl","ja_result"]],
   ja_reject:[],
   ja_result:[[".listrow","ja_detail"]],
@@ -1330,9 +1336,9 @@ const FLOW={
   la22:[[".listrow","la23"]],
   la23:[]
 };
-const BACK={la1:"home",la2:"la1",la3:"la2",la4:"la3",la5:"la4",la6:"la5",la7:"la6",la8:"la7",la9:"la8",
-  la10:"la9",la11:"la10",la12:"la11",la13:"la12",la14:"la13",la15:"la14",la16:"la15",la17:"la16",la18:"la17",la19:"la18",la20:"la19",la21:"la20",la22:"home",la23:"la22",ci:"home",
-  ja_intro:"home",ja_purpose:"ja_intro",ja_contract:"ja_purpose",ja_house:"ja_contract",ja_loading:"ja_house",ja_reject:"ja_result",ja_result:"home",ja_detail:"ja_result"};
+const BACK={la1:"home_md",la2:"la1",la3:"la2",la4:"la3",la5:"la4",la6:"la5",la7:"la6",la8:"la7",la9:"la8",
+  la10:"la9",la11:"la10",la12:"la11",la13:"la12",la14:"la13",la15:"la14",la16:"la15",la17:"la16",la18:"la17",la19:"la18",la20:"la19",la21:"la20",la22:"home_md",la23:"la22",ci:"home_md",
+  ja_intro:"home_md",ja_purpose:"ja_intro",ja_contract:"ja_purpose",ja_house:"ja_contract",ja_loading:"ja_house",ja_reject:"ja_result",ja_result:"home_md",ja_detail:"ja_result"};
 // 화면 진입 뷰 = 화면 전체를 그 이벤트 영역으로
 const PAGEVIEW={
   entry:["MY_bs_view","앱 진입 마케팅 배너 팝업 노출 — 이 영역. ✅Mixpanel 확정","25.0만"],
