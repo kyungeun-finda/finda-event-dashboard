@@ -269,6 +269,12 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
       <optgroup label="전체(더보기·OS)">
         <option value="more">전체 메뉴</option>
       </optgroup>
+      <optgroup label="AI 대출 예측 알리미(ALP)">
+        <option value="alp_intro">1 · 랜딩(인트로)</option>
+        <option value="alp_terms">2 · 서비스 동의</option>
+        <option value="alp_loading">3 · 예측 로딩</option>
+        <option value="alp_main">4 · 예측 결과(메인)</option>
+      </optgroup>
     </select>
 
     <div class="legend">
@@ -960,7 +966,7 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
       <div class="osrow hot t-click" data-ev="OS_item_click" data-type="t-click" data-desc="'금리인하 자동신청' → OS_item_click {item:&quot;금리인하&quot;}. ✅Mixpanel 확정(트래킹 item명은 '금리인하')." data-g="—">금리인하 자동신청<span class="nb">N</span><span class="chev">›</span></div>
       <div class="osrow hot t-click" data-ev="OS_item_click" data-type="t-click" data-desc="'자동차 구매 대출' → OS_item_click {item:&quot;자동차 구매 대출&quot;}. ✅Mixpanel 확정." data-g="—">자동차 구매 대출<span class="chev">›</span></div>
       <div class="osrow hot t-click" data-ev="OS_item_click" data-type="t-click" data-desc="'전월세대출 가이드' → OS_item_click {item:&quot;전월세 추천&quot;}. ✅Mixpanel 확정(트래킹 item명은 '전월세 추천')." data-g="—">전월세대출 가이드<span class="chev">›</span></div>
-      <div class="osrow hot t-click" data-ev="OS_item_click" data-type="t-click" data-desc="'AI 대출 예측 알리미' → OS_item_click {item:&quot;AI 대출 예측 알리미&quot;}. ✅Mixpanel 확정." data-g="—">AI 대출 예측 알리미<span class="nb">N</span><span class="chev">›</span></div>
+      <div id="more-alp" class="osrow hot t-click" data-ev="OS_item_click" data-type="t-click" data-desc="'AI 대출 예측 알리미' → OS_item_click {item:&quot;AI 대출 예측 알리미&quot;} → AI 대출 예측 랜딩(ALP) 진입. ✅Mixpanel 확정." data-g="—">AI 대출 예측 알리미<span class="nb">N</span><span class="chev">›</span></div>
       <div class="osrow hot t-click" data-ev="OS_item_click" data-type="t-click" data-desc="'대출후기' → OS_item_click {item:&quot;대출후기&quot;}. ✅Mixpanel 확정." data-g="—">대출후기<span class="chev">›</span></div>
 
       <div class="osline"></div>
@@ -1022,6 +1028,93 @@ body.showall .screenpage.pageview::before{ content:"👁 화면 진입 뷰 · " 
         <div class="g hot t-click" data-ev="NS_news_view" data-type="t-click" data-desc="포인트/혜택 탭" data-g="—"><span class="e">Ⓟ</span>포인트</div>
         <div class="g on hot t-view" data-ev="MY_home_view (tap=menu)" data-type="t-view" data-desc="전체(더보기) 탭 — 현재 위치" data-g="tap=menu"><span class="e">☰</span>전체</div>
       </div>
+    </div>
+
+    <!-- ============ ALP 1 랜딩(인트로) ============ -->
+    <div class="screenpage" data-id="alp_intro">
+      <div class="statusbar"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기 → 전체 메뉴" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="AI_intro_view" data-type="t-view" data-desc="AI 대출 예측 알리미 랜딩(인트로) 진입 시 자동 발생(페이지뷰). ✅Mixpanel 확정." data-g="286">👁 화면 진입 시 발생 · <b>AI_intro_view</b><span class="g">📊 286</span></div>
+      <div class="ttl">한도 조회 전 AI 예측값을<br>먼저 확인하세요</div>
+      <div style="text-align:center;font-size:54px;color:#3b5bdb;margin:14px 0 6px">✦</div>
+      <div style="text-align:center;font-size:14px;color:#5a5a68;line-height:1.6;padding:0 22px">대출, 이제 먼저 예측해보고 결정하세요.<br>신용조회 없이 핀다가 알려드릴게요.</div>
+      <div style="margin:18px 22px;background:#f4f4f8;border-radius:14px;padding:16px 16px;font-size:13px;color:#5a5a68;line-height:1.7">
+        • 매번 바뀌는 금리·한도, 일일이 조회하지 않아도 돼요.<br>
+        • 나와 비슷한 사람들이 실제 받은 조건도 함께 비교해드려요.<br>
+        • 핀다에 없는 금융기관까지 포함해서 알려드려요.
+      </div>
+      <div style="font-size:16px;font-weight:800;padding:6px 22px 0;line-height:1.5">예측 조건은 매일 업데이트돼요.<br>놓치지 않도록 2주마다 알려드릴게요.</div>
+      <div style="margin:14px 22px 0;background:#f7f7fb;border:1px solid #ececf2;border-radius:14px;padding:14px 16px">
+        <span style="font-size:11px;color:#9a9aa8;background:#ececf2;border-radius:6px;padding:3px 8px">예시 이미지</span>
+        <div style="display:flex;gap:30px;margin-top:12px">
+          <div><div style="font-size:12px;color:#8a8a99">내 예상 금리</div><div style="font-weight:800;font-size:22px">4.25%</div></div>
+          <div><div style="font-size:12px;color:#8a8a99">내 예상 한도</div><div style="font-weight:800;font-size:22px">3,500만원</div></div>
+        </div>
+        <div style="margin-top:12px;height:120px;border-radius:10px;background:radial-gradient(circle at 55% 45%,#e9d5f2,#f7f7fb);display:flex;align-items:center;justify-content:center;font-size:12px;color:#9a9aa8">📊 금리·한도 분포 (예시) · 내 조건</div>
+      </div>
+      <div class="cta-btn hot t-click" data-ev="AI_intro_click_CTA" data-type="t-click" data-desc="'동의하기' CTA 클릭 → 서비스 동의 바텀시트. ✅Mixpanel 확정." data-g="180">동의하기</div>
+    </div>
+
+    <!-- ============ ALP 2 서비스 동의(바텀시트) ============ -->
+    <div class="screenpage" data-id="alp_terms">
+      <div class="statusbar"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="back">‹</div>
+      <div class="ttl">한도 조회 전 AI 예측값을<br>먼저 확인하세요</div>
+      <div style="text-align:center;font-size:54px;color:#3b5bdb;margin:14px 0 6px">✦</div>
+      <div class="dim"></div>
+      <div class="bs">
+        <div class="grab"></div>
+        <div class="pvbar hot t-view" data-ev="확인필요" data-type="t-view" data-desc="서비스 동의 바텀시트 노출 — ⚠️확인필요. AI_ 계열에 약관 노출(view) 전용 이벤트가 없어 단정 불가(동의 CTA는 AI_terms_clickCTA로 확정)." data-g="—" style="margin:0 0 12px;background:#fff4e6;border-color:#ffd9a8;color:#b25a00">👁 바텀시트 노출 — <b>확인필요</b><span class="g" style="color:#c98a3a">⚠️ view 미확인</span></div>
+        <h3>서비스 동의</h3>
+        <div class="opt hot t-click" data-ev="확인필요" data-type="t-click" data-desc="'개인(신용)정보 수집 이용 동의 [AI대출예측]' 체크 — ⚠️확인필요. 개별 약관 체크 이벤트 미확인." data-g="—" style="display:flex;align-items:center;gap:10px"><span class="chk">✓</span>개인(신용)정보 수집 이용 동의<br>[AI대출예측]</div>
+        <div class="cta-btn hot t-click" data-ev="AI_terms_clickCTA" data-type="t-click" data-desc="'동의하기' — 서비스 동의 완료 → AI 예측 로딩. ✅Mixpanel 확정." data-g="152" style="margin:16px 0 0">동의하기</div>
+      </div>
+    </div>
+
+    <!-- ============ ALP 3 예측 로딩 ============ -->
+    <div class="screenpage" data-id="alp_loading">
+      <div class="statusbar"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="AI_loading_view" data-type="t-view" data-desc="AI 대출 조건 예측 로딩 화면 진입 시 자동 발생(페이지뷰). ✅Mixpanel 확정." data-g="1.03만">👁 화면 진입 시 발생 · <b>AI_loading_view</b><span class="g">📊 1.03만</span></div>
+      <div class="ttl">핀다 AI가 김핀다님의 대출 조건<br>을 예측하고 있어요...</div>
+      <div class="subttl">잠시만 기다려주세요.</div>
+      <div style="text-align:center;margin:60px 0"><div style="display:inline-flex;align-items:center;justify-content:center;width:120px;height:120px;border-radius:50%;border:6px solid #1e3aef;border-right-color:#3ee0c0;font-size:40px;color:#1bc6a8">✦</div></div>
+      <div style="text-align:center;font-size:12px;color:#b5b5c0">예측이 끝나면 결과 화면으로 이동해요</div>
+    </div>
+
+    <!-- ============ ALP 4 예측 메인(결과) ============ -->
+    <div class="screenpage" data-id="alp_main">
+      <div class="statusbar"><span>2:29</span><span class="r">●●●● 5G <span class="batt">78</span></span></div>
+      <div class="back hot t-click" data-ev="(뒤로가기)" data-type="t-click" data-desc="뒤로가기" data-g="—">‹</div>
+      <div class="pvbar hot t-view" data-ev="AI_MAIN_VIEW" data-type="t-view" data-desc="AI 대출 예측 메인(결과) 진입 시 자동 발생(페이지뷰). ✅Mixpanel 확정." data-g="4,623">👁 화면 진입 시 발생 · <b>AI_MAIN_VIEW</b><span class="g">📊 4,623</span></div>
+      <div class="hot t-click" data-ev="AI_MAIN_CLICK_NOTIBOX" data-type="t-click" data-desc="상단 안내 박스('매일 오전 7시에 최신 조건으로 바뀌어요') 클릭. 노출=AI_MAIN_VIEW_NOTIBOX. ✅Mixpanel 확정(클릭 발생량 적음)." data-g="4" style="margin:0 22px;background:#f4f4f8;border-radius:10px;padding:11px 14px;font-size:13px;color:#5a5a68">ⓘ 매일 오전 7시에 최신 조건으로 바뀌어요.</div>
+      <div style="text-align:center;font-size:48px;color:#3b5bdb;margin:16px 0 4px">✦</div>
+      <div style="text-align:center;font-size:18px;font-weight:800;line-height:1.4">오늘 김핀다님의<br>신용대출 AI 예상조건</div>
+      <div class="hot t-click" data-ev="AI_MAIN_CLICK_HOW_PREDICT" data-type="t-click" data-desc="'예측은 어떻게 이루어지나요?' 클릭. ✅Mixpanel 확정." data-g="52" style="text-align:center;font-size:13px;color:#6b5bd6;font-weight:700;margin:6px 0 14px">예측은 어떻게 이루어지나요? ›</div>
+      <div style="display:flex;gap:14px;padding:0 22px">
+        <div class="hot t-click" data-ev="AI_MAIN_CLICK_RATE_TOP" data-type="t-click" data-desc="상단 '내 예상 금리' 영역 클릭. ✅Mixpanel 확정." data-g="194" style="flex:1"><div style="font-size:12px;color:#8a8a99">내 예상 금리</div><div style="font-weight:800;font-size:24px">4.25%</div></div>
+        <div class="hot t-click" data-ev="AI_MAIN_CLICK_AMOUNT_TOP" data-type="t-click" data-desc="상단 '내 예상 한도' 영역 클릭. ✅Mixpanel 확정." data-g="37" style="flex:1"><div style="font-size:12px;color:#8a8a99">내 예상 한도</div><div style="font-weight:800;font-size:24px">2,500만원</div></div>
+      </div>
+      <div style="margin:14px 22px 0;background:#f3efff;border-radius:14px;padding:14px 16px">
+        <div style="font-size:13px;font-weight:700;color:#6b5bd6;margin-bottom:10px">🎉 정책상품 대상자예요!</div>
+        <div style="display:flex;gap:14px">
+          <div style="flex:1"><div style="font-size:12px;color:#8a8a99">정책상품 금리</div><div style="font-weight:800;font-size:22px">3.12%</div></div>
+          <div style="flex:1"><div style="font-size:12px;color:#8a8a99">정책상품 한도</div><div style="font-weight:800;font-size:22px">1,300만원</div></div>
+        </div>
+      </div>
+      <div style="font-size:16px;font-weight:800;padding:20px 22px 4px;line-height:1.5">최근 한달 간 나와 비슷한 사람들이<br>실제로 받은 대출 분포예요</div>
+      <div style="font-size:13px;color:#8a8a99;padding:0 22px 10px">내 예측 결과를 검증할 수 있는 데이터예요.</div>
+      <div class="hot t-click" data-ev="AI_MAIN_CLICK_RATE_AMOUNT_DIV" data-type="t-click" data-desc="'나와 비슷한 사람들이 실제 받은 금리·한도 분포' 차트 클릭. ✅Mixpanel 확정." data-g="724" style="margin:0 22px;height:130px;border-radius:10px;background:radial-gradient(circle at 58% 45%,#e9d5f2,#fafafd);display:flex;align-items:center;justify-content:center;font-size:12px;color:#9a9aa8">📊 금리·한도 분포 차트 · 내 조건</div>
+      <div style="font-size:16px;font-weight:800;padding:22px 22px 8px;line-height:1.5">나와 비슷한 사람들이 실제로 받은<br>금리·한도 조건이에요</div>
+      <div class="tabs" style="padding:0 22px">
+        <span class="hot t-tab" data-ev="AI_MAIN_CLICK_SIMILAR_GROUP" data-type="t-tab" data-desc="'금리 낮은 순' 탭 — 비슷한 사람 실제 조건 정렬. ✅Mixpanel 확정." data-g="12" style="color:#6b5bd6;font-weight:700">금리 낮은 순</span>
+        <span class="hot t-tab" data-ev="AI_MAIN_CLICK_SIMILAR_GROUP" data-type="t-tab" data-desc="'한도 높은 순' 탭. ✅Mixpanel 확정." data-g="12">한도 높은 순</span>
+      </div>
+      <div class="listrow hot t-click" data-ev="AI_MAIN_CLICK_SIMILAR_GROUP" data-type="t-click" data-desc="비슷한 사람 실제 대출 항목 클릭 (하나은행 직장인 신용대출). ✅Mixpanel 확정." data-g="12"><span>🟢 하나은행 <span class="sm">직장인 신용대출 · 핀다입점상품</span></span><span style="text-align:right">3.61%<br><span class="sm">3,900만원 · 4일 전</span></span></div>
+      <div class="listrow hot t-click" data-ev="AI_MAIN_CLICK_SIMILAR_GROUP" data-type="t-click" data-desc="비슷한 사람 실제 대출 항목 클릭 (KB국민은행 직장인 바로 대출). ✅Mixpanel 확정." data-g="12"><span>🟡 KB국민은행 <span class="sm">직장인 바로 대출 · 핀다입점상품</span></span><span style="text-align:right">3.98%<br><span class="sm">3,600만원 · 3일 전</span></span></div>
+      <div class="listrow hot t-click" data-ev="AI_MAIN_CLICK_SIMILAR_GROUP" data-type="t-click" data-desc="비슷한 사람 실제 대출 항목 클릭 (SC제일은행 직장인 신용대출). ✅Mixpanel 확정." data-g="12"><span>🔵 SC제일은행 <span class="sm">직장인 신용대출</span></span><span style="text-align:right">4.02%<br><span class="sm">4,200만원 · 7일 전</span></span></div>
+      <div class="hot t-click" data-ev="AI_MAIN_CLICK_INFO_UPDATE" data-type="t-click" data-desc="'내 대출 정보 최신으로 업데이트 하기' 클릭 → 마이데이터 재동기화. ✅Mixpanel 확정." data-g="321" style="display:flex;justify-content:space-between;align-items:center;padding:18px 22px;font-size:14px;font-weight:700">내 대출 정보 최신으로 업데이트 하기 <span style="color:#ccc">›</span></div>
+      <div class="cta-btn hot t-click" data-ev="AI_MAIN_CLICK_CTA" data-type="t-click" data-desc="'한도조회 해보기' CTA → 비교대출 한도조회(LA) 진입. ✅Mixpanel 확정." data-g="2,050">한도조회 해보기</div>
     </div>
 
     <!-- ============ JA1 전세 인트로 ============ -->
@@ -1298,7 +1391,11 @@ const FLOW={
   home_md:[["#home-loan-get-md","la1"],["#home-credit-md","ci_pop"],["#gnb-more-md","more"],["#home-jeonse-md","ja_intro"]],
   ci_pop:[["#cipop-cta","ci"],["#cipop-dim","ci"]],
   ci:[],
-  more:[["#more-credit","ci"],["#more-gnb-home","home_md"]],
+  more:[["#more-credit","ci"],["#more-gnb-home","home_md"],["#more-alp","alp_intro"]],
+  alp_intro:[[".cta-btn","alp_terms"]],
+  alp_terms:[[".cta-btn","alp_loading"],[".dim","alp_intro"]],
+  alp_loading:[[".pvbar","alp_main"],[".ttl","alp_main"],[".subttl","alp_main"]],
+  alp_main:[[".cta-btn","la1"]],
   ja_intro:[[".cta-btn","ja_purpose"]],
   ja_purpose:[[".listrow","ja_contract"]],
   ja_contract:[['[data-ev="(날짜 입력)"]',"ja_date"],[".cta-btn","ja_pop1"]],
@@ -1338,6 +1435,7 @@ const FLOW={
 };
 const BACK={la1:"home_md",la2:"la1",la3:"la2",la4:"la3",la5:"la4",la6:"la5",la7:"la6",la8:"la7",la9:"la8",
   la10:"la9",la11:"la10",la12:"la11",la13:"la12",la14:"la13",la15:"la14",la16:"la15",la17:"la16",la18:"la17",la19:"la18",la20:"la19",la21:"la20",la22:"home_md",la23:"la22",ci:"home_md",
+  alp_intro:"more",alp_terms:"alp_intro",alp_loading:"alp_terms",alp_main:"more",
   ja_intro:"home_md",ja_purpose:"ja_intro",ja_contract:"ja_purpose",ja_house:"ja_contract",ja_loading:"ja_house",ja_reject:"ja_result",ja_result:"home_md",ja_detail:"ja_result"};
 // 화면 진입 뷰 = 화면 전체를 그 이벤트 영역으로
 const PAGEVIEW={
@@ -1368,6 +1466,9 @@ const PAGEVIEW={
   la23:["LA_loandetail_view","대출 상품 상세 진입 — 화면 전체. params {product_id}. ✅이벤트로그 확정","—"],
   ci:["CI_main_view","신용관리 홈 진입 — 화면 전체. params {type:score, reference:(myhome,OS…), result:(UP/NO_CHANGE/DOWN/ERROR)}. ✅이벤트로그 확정","—"],
   more:["MY_home_view","전체(더보기) 탭 — MY_home_view {tap:menu}. 화면 전체 영역. ✅이벤트로그 확정","tap=menu"],
+  alp_intro:["AI_intro_view","AI 대출 예측 알리미 랜딩(인트로) 진입 — 화면 전체. ✅Mixpanel 확정","286"],
+  alp_loading:["AI_loading_view","AI 대출 조건 예측 로딩 진입 — 화면 전체. ✅Mixpanel 확정","1.03만"],
+  alp_main:["AI_MAIN_VIEW","AI 대출 예측 메인(결과) 진입 — 화면 전체. ✅Mixpanel 확정","4,623"],
   ja_intro:["JA_intro_view","전세자금대출 인트로 진입 — 화면 전체. params {point:A|B}. ✅이벤트로그 확정","—"],
   ja_purpose:["JA_purpose_view","전세 목적 선택 진입 — 화면 전체. ✅이벤트로그 확정","—"],
   ja_contract:["JA_contractinfo_view","전세 계약정보 입력 진입 — 화면 전체. params {service:LA|RA}. ✅이벤트로그 확정","—"],
